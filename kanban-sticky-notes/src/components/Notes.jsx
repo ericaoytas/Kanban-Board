@@ -1,10 +1,22 @@
 import React from 'react';
 import Note from './Note';
 
-function Notes() {
+
+
+
+function Notes(props) {
+
+    function createNote(noteInfo) {
+        return (<Note 
+            key={noteInfo.noteId}
+            id={noteInfo.noteId}
+            title={noteInfo.title}
+            description={noteInfo.description}
+        />);
+    }
     return (
-        <div>
-            <Note />
+        <div className="notes">
+            {props.notesArray.map(createNote)}
         </div>
     );
 }
