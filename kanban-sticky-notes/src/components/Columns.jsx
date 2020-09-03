@@ -52,6 +52,7 @@ function Columns(props) {
         <div className="columns">
             <div className="flex-container">
                     {props.categories.map(createColumn(props.notes))}
+                    <NewColumn />
             </div>
         </div>
     );   

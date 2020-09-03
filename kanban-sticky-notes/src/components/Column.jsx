@@ -13,6 +13,7 @@ function Column(props) {
             name={props.columnTitle}
             >
             <h1>{props.columnTitle}</h1>
+            <hr/>
             <Notes
                 notesArray={props.notesArray}
             />
