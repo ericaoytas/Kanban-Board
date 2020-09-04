@@ -1,185 +1,195 @@
-/** Note */
+/** Header and Footer **/
 
-.app {
-    height: 100%;
-}
-
-body, h1 {
-    margin: 0;
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+  color: #858585;
+  text-align: center;
+  margin: 7% 0 2% 0;
 }
 
 header {
-    background-color: #00adb5;
-    color: #eeeeee;
-    height: 2rem;
-    padding: 2% 5%;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2),0 3px 10px 0 rgba(0,0,0,0.19) !important;
-    font-family: 'Poppins', sans-serif;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 10px;
-    color: #858585;
-    text-align: center;
-    margin: 7% 0 2% 0;
+  background-color: #00adb5;
+  color: #eeeeee;
+  padding: 1% 5%;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
 
+/** General: app, board, body */
 
-.note p {
-    margin: 0;
-    font-family: 'Shadows Into Light', cursive;
-}
-
-.note h2 {
-    margin: 0 0 5% 0;
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 1.2rem;
-}
-
-.column {
-    min-width: 300px;
-    min-height: 50vw;
-
-}
-
-.column h1 {
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    color: white;
-}
-
-.new-column {
-    margin: 0 2%;
-
-}
-
-.plus {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bolder;
-    font-size: 2.5rem;
-    margin: 5% 0;
-    width: 2rem;
-    height: 2rem;
-    border: 3px solid white;
-    border-radius: 100%;
-}
-
-.plus:hover {
-    cursor: pointer;
-}
-
-/* .new-column p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #00adb5;
-    width: 3rem;
-    height: 3rem;
-    font-size: 2rem;
-    font-weight: bold;
-    border-radius: 100%;
-    margin: 5%;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2),0 3px 10px 0 rgba(0,0,0,0.19) !important;
-    
-} */
-
-hr {
-    color: white;
-}
-
-.columns {
-    padding: 1%; 
+.app {
+  height: 100%;
 }
 
 .board {
-    border: 40px solid #703c00;
-    margin: 5%;
-    background-color: #3d3d3d;
-    box-shadow: -1px 2px 2px 0px #444, inset 0 0 10px 0 #000;
-    -webkit-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+  border: 20px solid #703c00;
+  margin: 5%;
+  background-color: #3d3d3d;
+  box-shadow: -1px 2px 2px 0px #444, inset 0 0 10px 0 #000;
+  -webkit-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.board h1 {
+    color: white;
+    text-align: center;
+    margin: 2% 0 0 0;
+}
+
+body,
+h1 {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+}
+
+hr {
+  color: white;
+  background: white;
+  border: none;
+  height: 2px;
+}
+
+/** Columns & Column */
+
+.column {
+   
+  min-width: 300px;
+  min-height: 50vw;
+}
+
+.column h2 {
+    margin: 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.new-column {
+  margin: 0 2%;
+  min-height: 40vw;
+}
+
+/** plus */
+
+.plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bolder;
+  font-size: 2.5rem;
+  margin: 3% 0;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid white;
+  border-radius: 100%;
+}
+
+.plus:hover {
+  cursor: pointer;
 }
 
 .flex-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-
-
-  .note {
-    text-decoration:none;
-    color:#000;
-    background:#f9fce1;
-    display:block;
-    height:10em;
-    width:10em;
-    padding:1em;
-    -moz-box-shadow:5px 5px 4px rgba(44,44,44,.5);
-    -webkit-box-shadow: 5px 5px 4px rgba(44,44,44,.5);
-    box-shadow: 5px 5px 4px rgba(44,44,44,.5);
-    -moz-transition:-moz-transform .15s linear;
-    -o-transition:-o-transform .15s linear;
-    -webkit-transition:-webkit-transform .15s linear;
-  }
-
-  .note-container {
-      margin: 1em;
-      display: float;
-      float: left;
-  }
-
-  .notes .note-container:nth-child(2n) .note{
-    position:relative;
-    background:#fee9b2;
-    
-  }
-
-  .notes .note-container:nth-child(3n) .note{
-    position:relative;
-    background:#d3f6f3;
-  }
-
-  .notes .note-container:nth-child(5n) .note{
-    position:relative;
-    background: #fbd1b7;
-  }
-
-  .notes .note-container .note:hover,.notes .note-container .note:focus{
-    box-shadow: 12px 12px 10px rgba(44,44,44,.8);
-    -moz-box-shadow: 12px 12px 10px  rgba(44,44,44,.8);
-    -webkit-box-shadow: 12px 12px 10px  rgba(44,44,44,.8);
-    -webkit-transform: scale(1.25);
-    -moz-transform: scale(1.25);
-    -o-transform: scale(1.25);
-    position:relative;
-    z-index:5;
-
-  }
-
-  .draggable {
-    cursor: move; /* fallback if grab cursor is unsupported */
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
- /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+
+/** Notes and Note */
+
+.note {
+  text-decoration: none;
+  color: #000;
+  background: #f9fce1;
+  display: block;
+  height: 7em;
+  width: 7em;
+  padding: .5em;
+  -moz-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
+  -webkit-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
+  box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
+  -moz-transition: -moz-transform 0.15s linear;
+  -o-transition: -o-transform 0.15s linear;
+  -webkit-transition: -webkit-transform 0.15s linear;
+  font-family: "Shadows Into Light", cursive;
+}
+
+.note h3 {
+  margin: 0 0 5% 0;
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.note p {
+  margin: 0;
+}
+
+.note-container {
+  margin: .5em;
+  display: float;
+  float: left;
+}
+
+.notes .note-container:nth-child(2n) .note {
+  position: relative;
+  background: #fee9b2;
+}
+
+.notes .note-container:nth-child(3n) .note {
+  position: relative;
+  background: #d3f6f3;
+}
+
+.notes .note-container:nth-child(5n) .note {
+  position: relative;
+  background: #fbd1b7;
+}
+
+.notes .note-container .note:hover,
+.notes .note-container .note:focus {
+  box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.8);
+  -moz-box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.8);
+  -webkit-box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.8);
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+}
+
+/** Draggable */
+
+.draggable {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
 .draggable:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+
+/** Modals */
+
+.modal-style {
+    width: 700px !important;
+}
+
+.modal-content{
+    height: 700px;
 }

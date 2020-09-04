@@ -12,7 +12,7 @@ function Note(props) {
       onDragStart={onDragStart}
     >
       <div className="note">
-        <h2>{props.title}</h2>
+        <h3>{props.title}</h3>
         <p>{props.description}</p>
       </div>
     </div>

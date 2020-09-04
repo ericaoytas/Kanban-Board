@@ -2,8 +2,6 @@ import React from 'react';
 import Note from './Note';
 
 
-
-
 function Notes(props) {
 
     function createNote(noteInfo) {

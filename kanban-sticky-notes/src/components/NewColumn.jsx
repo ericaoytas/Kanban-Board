@@ -3,7 +3,8 @@ import React from 'react';
 function NewColumn() {
     return (
         <div className="new-column">
-            <p className="plus" onClick={() => console.log("Clicked!")}>+</p>
+            <h2 className="plus" onClick={() => console.log("Clicked!")}>+</h2>
+            
         </div>
     ); 
 }

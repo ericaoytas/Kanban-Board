@@ -12,8 +12,7 @@ function Column(props) {
             onDrop={(e) => {props.onDrop(e, props.columnTitle)}}
             name={props.columnTitle}
             >
-            <h1>{props.columnTitle}</h1>
-            <hr/>
+            <h2>{props.columnTitle}</h2>
             <Notes
                 notesArray={props.notesArray}
             />
