@@ -15,6 +15,7 @@ function Column(props) {
             <h2>{props.columnTitle}</h2>
             <Notes
                 notesArray={props.notesArray}
+                showModal={props.showModal}
             />
         </div>
 

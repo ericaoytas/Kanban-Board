@@ -7,52 +7,32 @@ function Columns(props) {
     
     const [notesArray, setNotes] = useState(props.notes);
 
-    function createColumn(notes) {
+    function createColumn(notes, index) {
         return function(column) {
             let notesInCategory = getNotesInCategory(column.name, notes);
 
             return (<Column 
+                key={index}
                 columnTitle = {column.name}
                 notesArray = {notesInCategory}
-                onDragOver = {onDragOver}
-                onDrop = {onDrop}
+                onDragOver = {props.onDragOver}
+                onDrop = {props.onDrop}
+                showModal ={props.showModal}
             />);
         }
     }
 
-    function getNotesInCategory(category, notes) {
-        return notes.filter( (note) => {
-            return note.category === category;
+    function getNotesInCategory(category, inNotes) {
+        return inNotes.filter((note) => {
+          return note.category === category;
         });
-    }
-
+      }
     
-    function onDragOver(event) {
-        event.preventDefault();
-    }
-    
-    function onDrop(event, category) {
-        let id = event.dataTransfer.getData("id");
-        const updatedNote = notesArray.find(note => {
-            return note.noteId === id;
-        })
-        updatedNote.category = category;
-        setNotes(prevState => {
-            return [
-                ... prevState,
-                {
-                    ... updatedNote
-                }
-            ]
-        })
-    }
-
 
     return (
         <div className="columns">
             <div className="flex-container">
                     {props.categories.map(createColumn(props.notes))}
-                    <NewColumn />
             </div>
         </div>
     );   

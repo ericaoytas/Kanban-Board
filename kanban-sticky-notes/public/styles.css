@@ -17,7 +17,6 @@ header {
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
-
 /** General: app, board, body */
 
 .app {
@@ -38,15 +37,17 @@ header {
 }
 
 .board h1 {
-    color: white;
-    text-align: center;
-    margin: 2% 0 0 0;
+  color: white;
+  text-align: center;
+  margin: 2% 0 0 0;
 }
 
 body,
 h1 {
-    font-family: "Poppins", sans-serif;
-    margin: 0;
+  color: #222831;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  line-height: 1 !important;
 }
 
 hr {
@@ -59,13 +60,12 @@ hr {
 /** Columns & Column */
 
 .column {
-   
   min-width: 300px;
   min-height: 50vw;
 }
 
 .column h2 {
-    margin: 0;
+  margin: 0;
   text-align: center;
   font-family: "Poppins", sans-serif;
   color: white;
@@ -104,7 +104,6 @@ hr {
   align-items: flex-start;
 }
 
-
 /** Notes and Note */
 
 .note {
@@ -114,7 +113,7 @@ hr {
   display: block;
   height: 7em;
   width: 7em;
-  padding: .5em;
+  padding: 0.5em;
   -moz-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
   -webkit-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
   box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
@@ -135,7 +134,7 @@ hr {
 }
 
 .note-container {
-  margin: .5em;
+  margin: 0.5em;
   display: float;
   float: left;
 }
@@ -183,13 +182,60 @@ hr {
   cursor: -webkit-grabbing;
 }
 
-
 /** Modals */
 
 .modal-style {
-    width: 700px !important;
+  width: 600px !important;
 }
 
-.modal-content{
-    height: 700px;
+.modal-content {
+  height: 600px;
+  border-radius: 0 !important;
+  background-color: #d3f6f3 !important;
+  font-family: "Shadows Into Light", cursive;
+}
+
+.modal-content label,
+.modal-content .h4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.modal-content input, .modal-content textarea, .modal-content select{
+  border: none;
+  -moz-box-shadow:    inset 0 0 4px #aaa;
+  -webkit-box-shadow: inset 0 0 4px #aaa;
+  box-shadow:         inset 0 0 4px #aaa;
+}
+
+.modal-content textarea {
+  height: 10rem !important;
+}
+
+.modal-content button{
+  font-family: "Poppins", sans-serif;
+  background: none;
+  border: none;
+  color: black;
+}
+
+.modal-content button:hover{
+  background: #00adb5;
+}
+
+
+
+@media only screen and (max-width: 995px) {
+  .modal-style {
+    width: 450px !important;
+  }
+
+  .modal-content {
+    height: 450px;
+
+  }
+  .modal-content textarea {
+    height: 4rem !important;
+  }
+
 }

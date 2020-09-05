@@ -10,6 +10,7 @@ function Notes(props) {
             id={noteInfo.noteId}
             title={noteInfo.title}
             description={noteInfo.description}
+            showModal={props.showModal}
         />);
     }
     return (

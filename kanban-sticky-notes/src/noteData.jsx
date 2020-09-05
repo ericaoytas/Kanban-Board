@@ -1,12 +1,4 @@
-const KEY_LENGTH = 10;
-
-function generateHexString(length) {
-  var ret = "";
-  while (ret.length < length) {
-    ret += Math.random().toString(16).substring(2);
-  }
-  return ret.substring(0,length);
-}
+import {generateHexString} from './hexGenerator';
 
 // const noteData = {
 //     columns : [ 
@@ -54,59 +46,59 @@ function generateHexString(length) {
     categories : [
 
       {
-        categoryId : generateHexString(KEY_LENGTH),
+        categoryId : generateHexString(),
         name : "In Progress"
       },
       {
-        categoryId : generateHexString(KEY_LENGTH),
+        categoryId : generateHexString(),
         name : "Finished"
       }
     ],
     notes : [
       {
-        noteId : generateHexString(KEY_LENGTH),
+        noteId : generateHexString(),
         category : "In Progress",
         title : "Buy Webcam",
         description : "One that will last."
       },
       {
-        noteId: generateHexString(KEY_LENGTH),
+        noteId: generateHexString(),
         category : "In Progress",
         title : "Buy Body Wash",
         description : "Girl, you ran out."
       },
       {
-        noteId : generateHexString(KEY_LENGTH),
+        noteId : generateHexString(),
         category : "In Progress",
         title : "Buy Pens",
         description : "Because why not."
       },
       {
-        noteId : generateHexString(KEY_LENGTH),
+        noteId : generateHexString(),
         category : "Finished",
         title : "CSS",
         description : "Fix the UI please."
       },
       {
-        noteId : generateHexString(KEY_LENGTH),
-        category : "Not Start",
-        title : "Javascript",
+        noteId : generateHexString(),
+        category : "In Progress",
+        title : "React Stuff",
         description : "Add drag and drop feature."
       },
       {
-        noteId : generateHexString(KEY_LENGTH),
+        noteId : generateHexString(),
         category : "In Progress",
         title : "Eat Lunch",
         description : "Delicious slice of bread."
       },
       {
-        noteId : generateHexString(KEY_LENGTH),
+        noteId : generateHexString(),
         category : "Finished",
         title : "SQL",
         description : "Use workbench."
       },
       {
-        noteId : generateHexString(KEY_LENGTH),
+        noteId : generateHexString(),
         category : "In Progress",
         title : "More Javascript",
         description : "Add drag and drop feature."
