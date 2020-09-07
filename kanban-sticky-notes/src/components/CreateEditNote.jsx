@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {generateHexString} from "../hexGenerator"
+
 
 /**
  * Create new note to be added to the board. 
@@ -12,22 +12,24 @@ import {generateHexString} from "../hexGenerator"
 
 function CreateNewNote(props) {
 
+  const initialState = props.noteModal.targetNote;
+  let submitButtonText = "";
+  if (props.noteModal.modalInfo.type === "create"){
+    submitButtonText = "Submit";
+  } else {
+    submitButtonText = "Save";
+  }
+
   const [note, setNote] = useState({
-    noteId: generateHexString(),
+    noteId: initialState.noteId,
     category: props.categories[0].name, 
-    title:"", 
-    description:""
+    title: initialState.title, 
+    description: initialState.description
   });
 
   function submitNote(event){
-    console.log(note);
-    props.onadd(note);
-    setNote({
-      noteId: generateHexString(),
-      category: props.categories[0].name,
-      title: "",
-      description: ""
-    });
+    props.onSubmit(note);
+
     event.preventDefault();
     props.onHide();
   }
@@ -100,7 +102,7 @@ function CreateNewNote(props) {
           variant="primary" 
           type="submit" 
           form="new-note-form" onClick={submitNote}>
-            Submit
+            {submitButtonText}
           </Button>
         </Modal.Footer>
       </>

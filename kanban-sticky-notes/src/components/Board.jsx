@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import Columns from "./Columns";
-import CreateNewNote from "./CreateNewNote";
+import CreateNewNote from "./CreateEditNote";
 import NoteModal from "./NoteModal";
+import {generateHexString} from "../hexGenerator";
 
 function Board(props) {
-  const [modalInfo, setModalInfo] = useState({
-    isShow: false,
-    type: "create",
-    targetNoteId: 0,
-
-
+  const [noteModalState, setNoteModalState] = useState({
+    modalInfo: {
+      isShow: false,
+      type: "create",
+      title: "Create New Note"
+    },
+    targetNote: {}
   });
   const noteData = props.noteData;
   const [notes, setNotes] = useState(noteData.notes);
@@ -33,6 +35,27 @@ function Board(props) {
     });
   }
 
+  function updateNote(updatedNote) {
+
+    const updatedNotes = notes.map(note => {
+      if (note.noteId === updatedNote.noteId) {
+        return ({
+          ...note, 
+          category: updatedNote.category,
+          title: updatedNote.title,
+          description: updatedNote.description
+        });
+      } else {
+        return note;
+      }
+    });
+
+    console.log(updatedNote)
+    console.log(updatedNotes);
+
+    setNotes(updatedNotes);
+  } 
+
 
   function onDragOver(event) {
     event.preventDefault();
@@ -40,6 +63,7 @@ function Board(props) {
 
   function onDrop(event, category) {
     let id = event.dataTransfer.getData("id");
+
     const updatedNote = notes.find((note) => {
       return note.noteId === id;
     });
@@ -48,37 +72,70 @@ function Board(props) {
     addNote(updatedNote);
   }
 
-  function showModal(event, type, noteId, isShow) {
+  function updateNoteModal(event, type, note, isShow) {
 
-    setModalInfo(prevInfo => {
+    let title="";
+
+    switch (type) {
+      case "create":
+        title="Create A New Note";
+        break;
+      case "view":
+        title="View Note";
+        break;
+      case "edit":
+        title="Edit Note";
+        break;
+      default: 
+        title="";
+    }
+
+    setNoteModalState(prevInfo => {
+
       return ({
         ...prevInfo,
-        type: type,
-        isShow: isShow,
-        targetNoteId: noteId
+        modalInfo: {
+          title: title,
+          type: type,
+          isShow: isShow,
+        },
+        targetNote: note
       });
       
     });
   }
 
+  function hideNoteModal() {
+    setNoteModalState(prevInfo => {
+      return ({
+        ...prevInfo,
+        modalInfo: {
+          title: prevInfo.modalInfo.title,
+          type: prevInfo.modalInfo.type,
+          isShow: false
+        }
+      });
+      
+    });
+  }
+
+  const emptyNote = {
+    noteId: generateHexString(),
+    title: "",
+    description: ""
+  }
+
   return (
     <div className="board">
-      <button onClick={(event) => showModal(event, "create", 0, true)}>Click here</button>
-      {/* <CreateNewNote
-        onadd={addNote}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        categories={noteData.categories}
-      /> */}
+      <button onClick={(event) => updateNoteModal(event, "create", emptyNote, true)}>Click here</button>
 
       <NoteModal 
-        onadd={addNote}
-        show={modalInfo.isShow}
-        onHide={(event) => showModal(event, "create", 0, false)}
-        noteData={noteData}
-        noteId={modalInfo.targetNoteId}
-        modalType={modalInfo.type}
-        modalTitle="Create New Note"
+        onSubmit={noteModalState.modalInfo.type === "create" ? addNote : updateNote}
+        show={noteModalState.modalInfo.isShow}
+        onHide={(event) => hideNoteModal()}
+        categories={noteData.categories}
+        noteModal={noteModalState}
+        showModal={updateNoteModal}
       />
 
       <h1>Board Title</h1>
@@ -87,7 +144,7 @@ function Board(props) {
         notes={notes} 
         onDrop={onDrop}
         onDragOver={onDragOver}
-        showModal={showModal}
+        showModal={updateNoteModal}
         />
     </div>
   );

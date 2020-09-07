@@ -2,10 +2,10 @@ import React from "react";
 
 function Note(props) {
   function onDragStart(event) {
-    event.dataTransfer.setData("id", props.id);
+    event.dataTransfer.setData("id", props.noteInfo.noteId);
   }
   function handleDoubleClick(event) {
-    props.showModal(event, "view", props.id, true);
+    props.showModal(event, "view", props.noteInfo, true);
   }
 
   return (
@@ -16,8 +16,8 @@ function Note(props) {
       onDoubleClick={handleDoubleClick}
     >
       <div className="note">
-        <h3>{props.title}</h3>
-        <p>{props.description.substr(0, 40)}</p>
+        <h3>{props.noteInfo.title}</h3>
+        <p>{props.noteInfo.description.substr(0, 40)}</p>
       </div>
     </div>
   );

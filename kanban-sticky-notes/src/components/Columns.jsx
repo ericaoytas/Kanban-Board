@@ -4,8 +4,6 @@ import NewColumn from './NewColumn';
 
 
 function Columns(props) { 
-    
-    const [notesArray, setNotes] = useState(props.notes);
 
     function createColumn(notes, index) {
         return function(column) {

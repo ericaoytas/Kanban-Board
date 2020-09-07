@@ -1,36 +1,38 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
-import CreateNewNote from './CreateNewNote'
+import CreateEditNote from './CreateEditNote'
 import ViewNote from './ViewNote'
 function NoteModal(props) {
 
-
     let modalBodyAndFooter = null;
 
-    switch(props.modalType) {
+    switch(props.noteModal.modalInfo.type) {
         case "create":
-            modalBodyAndFooter = <CreateNewNote 
-            onadd={props.onadd}
+        case "edit":
+            modalBodyAndFooter = <CreateEditNote 
+            onSubmit={props.onSubmit}
             show={props.show}
             onHide={props.onHide}
-            categories={props.noteData.categories}
+            categories={props.categories}
+            noteModal={props.noteModal}
             />
             break;
         case "view":
             modalBodyAndFooter = <ViewNote 
-                show={props.show}
-                onHide={props.onHide}
-                notes={props.noteData.notes}
-                noteId={props.noteId}
+              show={props.show}
+              onHide={props.onHide}
+              showModal={props.showModal}
+              noteModal={props.noteModal}
             />
             break;
         default:
-            modalBodyAndFooter = <CreateNewNote 
-            onadd={props.onadd}
-            show={props.show}
-            onHide={props.onHide}
-            categories={props.noteData.categories}
-            />
+          modalBodyAndFooter = <CreateEditNote 
+          onSubmit={props.onSubmit}
+          show={props.show}
+          onHide={props.onHide}
+          categories={props.categories}
+          noteModal={props.noteModal}
+          />
             break;
     }
 
@@ -44,7 +46,7 @@ function NoteModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.modalTitle}
+          {props.noteModal.modalInfo.title}
         </Modal.Title>
       </Modal.Header>
       {modalBodyAndFooter}
