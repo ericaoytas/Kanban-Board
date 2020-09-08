@@ -42,7 +42,7 @@ function NoteModal(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      dialogClassName="modal-style"
+      dialogClassName="note-modal"
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">

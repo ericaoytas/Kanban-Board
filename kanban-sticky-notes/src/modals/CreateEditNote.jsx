@@ -15,7 +15,7 @@ function CreateNewNote(props) {
   const initialState = props.noteModal.targetNote;
   let submitButtonText = "";
   if (props.noteModal.modalInfo.type === "create"){
-    submitButtonText = "Submit";
+    submitButtonText = "Create";
   } else {
     submitButtonText = "Save";
   }

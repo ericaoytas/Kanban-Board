@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Column from './Column';
-import NewColumn from './NewColumn';
 
 
 function Columns(props) { 

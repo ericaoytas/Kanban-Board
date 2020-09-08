@@ -44,7 +44,6 @@ import {generateHexString} from './hexGenerator';
 
   const noteData = {
     categories : [
-
       {
         categoryId : generateHexString(),
         name : "In Progress"

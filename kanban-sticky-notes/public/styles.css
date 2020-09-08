@@ -12,9 +12,12 @@ footer {
 
 header {
   background-color: #00adb5;
-  color: #eeeeee;
   padding: 1% 5%;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+header h1 {
+  color: #eeeeee;
 }
 
 /** General: app, board, body */
@@ -37,9 +40,10 @@ header {
 }
 
 .board h1 {
-  color: white;
+  color: #eeeeee;
   text-align: center;
   margin: 2% 0 0 0;
+  position: relative;
 }
 
 body,
@@ -51,8 +55,8 @@ h1 {
 }
 
 hr {
-  color: white;
-  background: white;
+  color: #eeeeee;
+  background: #eeeeee;
   border: none;
   height: 2px;
 }
@@ -68,7 +72,7 @@ hr {
   margin: 0;
   text-align: center;
   font-family: "Poppins", sans-serif;
-  color: white;
+  color: #eeeeee;
 }
 
 .new-column {
@@ -76,25 +80,6 @@ hr {
   min-height: 40vw;
 }
 
-/** plus */
-
-.plus {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bolder;
-  font-size: 2.5rem;
-  margin: 3% 0;
-  width: 2rem;
-  height: 2rem;
-  border: 3px solid white;
-  border-radius: 100%;
-}
-
-.plus:hover {
-  cursor: pointer;
-}
 
 .flex-container {
   display: flex;
@@ -102,6 +87,25 @@ hr {
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: flex-start;
+}
+
+/** Dropdown */
+
+#add-dropdown {
+  position: absolute;
+  z-index: 2;
+  margin: 1%;
+}
+
+#dropdown-basic {
+  color: #eeeeee;
+  background: none;
+  font-family: "Poppins", sans-serif;
+  border: none;
+}
+
+#dropdown-basic:hover {
+  background-color: #00adb5;
 }
 
 /** Notes and Note */
@@ -184,11 +188,11 @@ hr {
 
 /** Modals */
 
-.modal-style {
+.note-modal.modal-dialog {
   width: 600px !important;
 }
 
-.modal-content {
+.note-modal .modal-content {
   height: 600px;
   border-radius: 0 !important;
   background-color: #d3f6f3 !important;
@@ -223,7 +227,16 @@ hr {
   background: #00adb5;
 }
 
+.column-modal.modal-dialog {
+  width: 400px !important;
+}
 
+.column-modal .modal-content {
+  height: 250px;
+  border-radius: 0 !important;
+  background-color: #d3f6f3 !important;
+  font-family: "Shadows Into Light", cursive;
+}
 
 @media only screen and (max-width: 995px) {
   .modal-style {
