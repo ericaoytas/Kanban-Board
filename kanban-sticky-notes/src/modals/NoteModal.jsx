@@ -6,7 +6,7 @@ function NoteModal(props) {
 
     let modalBodyAndFooter = null;
 
-    switch(props.noteModal.modalInfo.type) {
+    switch(props.modal.info.type) {
         case "create":
         case "edit":
             modalBodyAndFooter = <CreateEditNote 
@@ -14,7 +14,7 @@ function NoteModal(props) {
             show={props.show}
             onHide={props.onHide}
             categories={props.categories}
-            noteModal={props.noteModal}
+            modal={props.modal}
             />
             break;
         case "view":
@@ -22,7 +22,7 @@ function NoteModal(props) {
               show={props.show}
               onHide={props.onHide}
               showModal={props.showModal}
-              noteModal={props.noteModal}
+              modal={props.modal}
             />
             break;
         default:
@@ -31,7 +31,7 @@ function NoteModal(props) {
           show={props.show}
           onHide={props.onHide}
           categories={props.categories}
-          noteModal={props.noteModal}
+          modal={props.modal}
           />
             break;
     }
@@ -46,7 +46,7 @@ function NoteModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.noteModal.modalInfo.title}
+          {props.modal.info.title}
         </Modal.Title>
       </Modal.Header>
       {modalBodyAndFooter}

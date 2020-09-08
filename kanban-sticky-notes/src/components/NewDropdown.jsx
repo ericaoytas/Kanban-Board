@@ -22,8 +22,8 @@ function NewDropdown(props) {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item as="button" onClick={(ev)=>props.updateNoteModal(ev, "create", emptyNote, true)}>New Note</Dropdown.Item>
-          <Dropdown.Item as="button" onClick={(ev) => props.updateColumnModal(ev, "create", emptyColumn, true)}>New Column</Dropdown.Item>
+          <Dropdown.Item name="note" as="button" href="#" onClick={(ev)=>props.showModal("note", true, "create", "Create New Note", emptyNote)}>New Note</Dropdown.Item>
+          <Dropdown.Item name="category" as="button" href="#" onClick={(ev) => props.showModal("category", true, "create", "Create New Column", emptyColumn)}>New Column</Dropdown.Item>
 
         </Dropdown.Menu>
       </Dropdown>

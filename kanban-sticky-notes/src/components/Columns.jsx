@@ -10,7 +10,7 @@ function Columns(props) {
 
             return (<Column 
                 key={index}
-                columnTitle = {column.name}
+                column = {column}
                 notesArray = {notesInCategory}
                 onDragOver = {props.onDragOver}
                 onDrop = {props.onDrop}

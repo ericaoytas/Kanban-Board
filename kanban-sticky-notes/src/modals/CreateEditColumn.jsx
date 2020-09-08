@@ -4,10 +4,10 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 function CreateEditColumn(props) {
 
-    const initialState = props.columnModal.targetColumn;
+    const initialState = props.modal.init;
 
     let submitButtonText = "";
-    if (props.columnModal.modalInfo.type === "create"){
+    if (props.modal.info.type === "create"){
       submitButtonText = "Create";
     } else {
       submitButtonText = "Save";

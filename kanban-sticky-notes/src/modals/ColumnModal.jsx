@@ -7,7 +7,7 @@ function ColumnModal(props) {
             onSubmit={props.onSubmit}
             show={props.show}
             onHide={props.onHide}
-            columnModal={props.columnModal}
+            modal={props.modal}
             />
 
   return (
@@ -20,7 +20,7 @@ function ColumnModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Create New Column
+          {props.modal.info.title}
         </Modal.Title>
       </Modal.Header>
       {modalBodyAndFooter}

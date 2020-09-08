@@ -5,11 +5,12 @@ function Note(props) {
     event.dataTransfer.setData("id", props.noteInfo.noteId);
   }
   function handleDoubleClick(event) {
-    props.showModal(event, "view", props.noteInfo, true);
+    props.showModal("note", true, "view", "View Note", props.noteInfo);
   }
 
   return (
     <div
+      name="note"
       className="note-container draggable"
       draggable
       onDragStart={onDragStart}

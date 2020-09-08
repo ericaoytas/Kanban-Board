@@ -89,6 +89,10 @@ hr {
   align-items: flex-start;
 }
 
+.column-title:hover {
+  cursor: pointer;
+}
+
 /** Dropdown */
 
 #add-dropdown {
@@ -190,10 +194,11 @@ hr {
 
 .note-modal.modal-dialog {
   width: 600px !important;
+  min-width: 600px !important;
 }
 
 .note-modal .modal-content {
-  height: 600px;
+  height: 600px !important;
   border-radius: 0 !important;
   background-color: #d3f6f3 !important;
   font-family: "Shadows Into Light", cursive;

@@ -12,9 +12,9 @@ import Form from "react-bootstrap/Form";
 
 function CreateNewNote(props) {
 
-  const initialState = props.noteModal.targetNote;
+  const initialState = props.modal.init;
   let submitButtonText = "";
-  if (props.noteModal.modalInfo.type === "create"){
+  if (props.modal.info.type === "create"){
     submitButtonText = "Create";
   } else {
     submitButtonText = "Save";

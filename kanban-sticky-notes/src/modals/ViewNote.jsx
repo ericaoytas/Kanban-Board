@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 
 function ViewNote(props) {
 
-    const note = props.noteModal.targetNote;
+    const note = props.modal.init;
 
     return (
         <>
@@ -27,8 +27,9 @@ function ViewNote(props) {
               Close
             </Button>
             <Button variant="primary" 
-              onClick={(event) => {
-                props.showModal(event, "edit", note, true);
+              name="note"
+              onClick={() => {
+                props.showModal("note", true, "edit","Edit Note", note);
               }}>
               Edit
             </Button>

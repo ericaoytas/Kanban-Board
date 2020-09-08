@@ -1,76 +1,47 @@
 import React, { useState } from "react";
 import Columns from "./Columns";
 import NoteModal from "../modals/NoteModal";
-
-import NewDropdown from './NewDropdown';
+import NewDropdown from "./NewDropdown";
 import ColumnModal from "../modals/ColumnModal";
 function Board(props) {
-
   // Hooks
-  const [noteModalState, setNoteModalState] = useState({
-    modalInfo: {
-      isShow: false,
-      type: "create",
-      title: "Create New Note"
-    },
-    targetNote: {}
-  });
-  const [columnModalState, setColumnModalState] = useState({
-    modalInfo: {
-      isShow: false,
-      type: "create",
-      title: "Create New Column"
-    },
-    targetColumn: {}
-  });
   const [notes, setNotes] = useState(props.noteData.notes);
   const [columns, setColumns] = useState(props.noteData.categories);
 
-  // Note Modal functions
-  function updateNoteModal(event, type, note, isShow) {
+  const [modalState, setModalState] = useState({
+    info: {
+      isShow: false,
+      type: "",
+      title: "",
+    },
+    init: {},
+    type: "",
+  });
 
-    let title="";
+  function updateModal(modalType, isShow, type, title, init) {
 
-    switch (type) {
-      case "create":
-        title="Create A New Note";
-        break;
-      case "view":
-        title="View Note";
-        break;
-      case "edit":
-        title="Edit Note";
-        break;
-      default: 
-        title="";
-    }
-
-    setNoteModalState(prevInfo => {
-
-      return ({
-        ...prevInfo,
-        modalInfo: {
-          title: title,
-          type: type,
-          isShow: isShow,
-        },
-        targetNote: note
-      });
-      
+    setModalState({
+      info: {
+        isShow: isShow,
+        type: type,
+        title: title,
+      },
+      init: init,
+      type: modalType
     });
   }
 
-  function hideNoteModal() {
-    setNoteModalState(prevInfo => {
-      return ({
+  function hideModal() {
+    setModalState((prevInfo) => {
+      return {
         ...prevInfo,
-        modalInfo: {
-          title: prevInfo.modalInfo.title,
-          type: prevInfo.modalInfo.type,
-          isShow: false
-        }
-      });
-      
+        info: {
+          isShow: false,
+          title: prevInfo.info.title,
+          type: prevInfo.info.type,
+          
+        },
+      };
     });
   }
 
@@ -87,73 +58,65 @@ function Board(props) {
   }
 
   function deleteNote(noteId) {
-    setNotes(prevNotes => {
-      return prevNotes.filter(noteItem => {
+    setNotes((prevNotes) => {
+      return prevNotes.filter((noteItem) => {
         return noteItem.noteId !== noteId;
       });
     });
   }
 
   function updateNote(updatedNote) {
-    const updatedNotes = notes.map(note => {
+    const updatedNotes = notes.map((note) => {
       if (note.noteId === updatedNote.noteId) {
-        return ({
-          ...note, 
+        return {
+          ...note,
           category: updatedNote.category,
           title: updatedNote.title,
-          description: updatedNote.description
-        });
+          description: updatedNote.description,
+        };
       } else {
         return note;
       }
     });
     setNotes(updatedNotes);
-  } 
+  }
 
   // Add, delete, update Columns
-  function addColumn(newColumn){
-    setColumns(prevColumns => {
+  function addColumn(newColumn) {
+    setColumns((prevColumns) => {
       return [
         ...prevColumns,
         {
-          ...newColumn
-        }
-      ]
-    })
-  }
-
-  // Column Modal functions
-  function updateColumnModal(event, type, column, isShow){
-    
-    let title="Create New Column"
-
-    setColumnModalState(prevInfo => {
-
-      return ({
-        ...prevInfo,
-        modalInfo: {
-          title: title,
-          type: type,
-          isShow: isShow,
+          ...newColumn,
         },
-        targetColumn: column
-      });
-      
+      ];
     });
   }
 
-  function hideColumnModal() {
-    setColumnModalState(prevInfo => {
-      return ({
-        ...prevInfo,
-        modalInfo: {
-          title: prevInfo.modalInfo.title,
-          type: prevInfo.modalInfo.type,
-          isShow: false
-        }
-      });
-      
+  function updateColumn(updatedColumn) {
+    const updatedColumns = columns.map((column) => {
+      if (column.categoryId === updatedColumn.categoryId) {
+
+        // update notes 
+
+        notes.map(note => {
+          if(note.category === column.name) {
+            note.category= updatedColumn.name;
+            updateNote(note);
+          }
+        })
+
+        return {
+          ...column,
+          categoryId: updatedColumn.category,
+          name: updatedColumn.name,
+        };
+      } else {
+        return column;
+      }
     });
+    setColumns(updatedColumns);
+    console.log(notes);
   }
 
   // Drag and Drop functions
@@ -172,38 +135,33 @@ function Board(props) {
     addNote(updatedNote);
   }
 
-
-
   return (
     <div className="board">
-      <NewDropdown 
-        updateNoteModal={updateNoteModal}
-        updateColumnModal={updateColumnModal}
+      <NewDropdown showModal={updateModal} />
+      <NoteModal
+        onSubmit={modalState.info.type === "create" ? addNote : updateNote}
+        show={modalState.type==="note" && modalState.info.isShow}
+        onHide={(event) => hideModal()}
+        categories={columns}
+        modal={modalState}
+        showModal={updateModal}
       />
-      <NoteModal 
-        onSubmit={noteModalState.modalInfo.type === "create" ? addNote : updateNote}
-        show={noteModalState.modalInfo.isShow}
-        onHide={(event) => hideNoteModal()}
-        categories={props.noteData.categories}
-        noteModal={noteModalState}
-        showModal={updateNoteModal}
-      />
-      <ColumnModal 
-        onSubmit={addColumn}
-        show={columnModalState.modalInfo.isShow}
-        onHide={()=>hideColumnModal()}
-        columnModal={columnModalState}
-        showModal={updateColumnModal}
+      <ColumnModal
+        onSubmit={modalState.info.type === "create" ? addColumn : updateColumn}
+        show={modalState.type==="category" && modalState.info.isShow}
+        onHide={() => hideModal()}
+        modal={modalState}
+        showModal={updateModal}
       />
 
       <h1>Board Title</h1>
-      <Columns 
-        categories={columns} 
-        notes={notes} 
+      <Columns
+        categories={columns}
+        notes={notes}
         onDrop={onDrop}
         onDragOver={onDragOver}
-        showModal={updateNoteModal}
-        />
+        showModal={updateModal}
+      />
     </div>
   );
 }
