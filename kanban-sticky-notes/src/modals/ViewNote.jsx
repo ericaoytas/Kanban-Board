@@ -10,16 +10,16 @@ function ViewNote(props) {
         <>
           <Modal.Body>
           <div>
-            <label for="noteTitle"> Title </label>
-            <p id="noteTitle">{note.title}</p>
+            <label for="note-title"> Title </label>
+            <div class="scrollable-container"><p id="note-title">{note.title}</p></div>
           </div>
           <div>
-            <label for="noteDescription"> Description </label>
-            <p id="noteDescription">{note.description}</p>
+            <label for="note-description"> Description </label>
+            <div class="scrollable-container"><p id="note-description">{note.description}</p></div>
           </div>
-          <div>
-            <label for="noteCategory"> Category </label>
-            <p id="noteCategory">{note.category}</p>
+          <div >
+            <label for="note-category"> Category </label>
+            <p id="note-category">{note.category}</p>
           </div>
           </Modal.Body>
           <Modal.Footer>

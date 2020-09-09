@@ -6,7 +6,7 @@ function Notes(props) {
 
     function createNote(noteInfo) {
         return (<Note 
-            key={noteInfo.noteId}
+            key={noteInfo.id}
             noteInfo={noteInfo}
             showModal={props.showModal}
         />);

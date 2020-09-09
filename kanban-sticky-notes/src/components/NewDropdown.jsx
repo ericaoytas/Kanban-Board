@@ -16,7 +16,7 @@ function NewDropdown(props) {
       }
 
     return (
-        <Dropdown id="add-dropdown">
+        <Dropdown id="add-dropdown" class="new-dropdown">
         <Dropdown.Toggle  id="dropdown-basic">
           + New
         </Dropdown.Toggle>

@@ -1,9 +1,9 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import CreateEditColumn from './CreateEditColumn';
+import CreateEditTitle from './CreateEditTitle';
 function ColumnModal(props) {
 
-  let modalBodyAndFooter = <CreateEditColumn 
+  let modalBodyAndFooter = <CreateEditTitle 
             onSubmit={props.onSubmit}
             show={props.show}
             onHide={props.onHide}

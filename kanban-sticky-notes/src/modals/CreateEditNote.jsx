@@ -21,17 +21,22 @@ function CreateNewNote(props) {
   }
 
   const [note, setNote] = useState({
-    noteId: initialState.noteId,
+    id: initialState.id,
     category: props.categories[0].name, 
     title: initialState.title, 
     description: initialState.description
   });
 
   function submitNote(event){
+    
     props.onSubmit(note);
-
     event.preventDefault();
-    props.onHide();
+    if (props.modal.info.type==="create") {
+      props.onHide();
+    } else {
+      props.showModal("note", true, "view","View Note", note)
+    }
+    
   }
 
   function handleChange(event) {

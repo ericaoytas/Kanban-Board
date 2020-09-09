@@ -14,6 +14,7 @@ function NoteModal(props) {
             show={props.show}
             onHide={props.onHide}
             categories={props.categories}
+            showModal={props.showModal}
             modal={props.modal}
             />
             break;
@@ -31,6 +32,7 @@ function NoteModal(props) {
           show={props.show}
           onHide={props.onHide}
           categories={props.categories}
+          showModal={props.showModal}
           modal={props.modal}
           />
             break;

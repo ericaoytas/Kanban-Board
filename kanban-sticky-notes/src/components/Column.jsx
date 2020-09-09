@@ -4,7 +4,7 @@ import Notes from './Notes'
 
 function Column(props) {
 
-    function handleDoubleClick(event) {
+    function handleClick(event) {
         props.showModal("category", true, "edit", "Edit Column", props.column);
       }
 
@@ -15,7 +15,7 @@ function Column(props) {
             onDrop={(e) => {props.onDrop(e, props.column.name)}}
             name={props.columnTitle}
             >
-            <h2 class="column-title" onDoubleClick={handleDoubleClick}>{props.column.name}</h2>
+            <h2 class="column-title" onClick={handleClick}>{props.column.name}</h2>
             <Notes
                 notesArray={props.notesArray}
                 showModal={props.showModal}

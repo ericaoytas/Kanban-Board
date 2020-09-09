@@ -13,22 +13,21 @@ function CreateEditColumn(props) {
       submitButtonText = "Save";
     }
   
-    const [column, setColumn] = useState({
-      categoryId: initialState.categoryId,
+    const [title, setTitle] = useState({
+      id: initialState.id,
       name: initialState.name
     });
   
-  
     function submit(event){
-        event.preventDefault();
-      props.onSubmit(column);
+      event.preventDefault();
+      props.onSubmit(title); 
       props.onHide();
     }
   
     function handleChange(event) {
       const { name, value } = event.target;
   
-      setColumn(prev => {
+      setTitle(prev => {
         return {
           ...prev,
           [name]: value
@@ -41,13 +40,13 @@ function CreateEditColumn(props) {
       <Modal.Body>
         <Form>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>New Column Name</Form.Label>
+            <Form.Label>New Name</Form.Label>
             <Form.Control
               onChange={handleChange}
               type="text"
-              placeholder="Enter column name"
+              placeholder= {"Enter " + props.modal.type + " name"} 
               name="name"
-              value={column.name}
+              value={title.name}
               autoComplete="off"
             />
           </Form.Group>

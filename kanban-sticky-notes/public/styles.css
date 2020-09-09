@@ -46,6 +46,10 @@ header h1 {
   position: relative;
 }
 
+.board h1:hover {
+  cursor: pointer;
+}
+
 body,
 h1 {
   color: #222831;
@@ -64,7 +68,6 @@ hr {
 /** Columns & Column */
 
 .column {
-  min-width: 300px;
   min-height: 50vw;
 }
 
@@ -73,11 +76,6 @@ hr {
   text-align: center;
   font-family: "Poppins", sans-serif;
   color: #eeeeee;
-}
-
-.new-column {
-  margin: 0 2%;
-  min-height: 40vw;
 }
 
 
@@ -119,8 +117,8 @@ hr {
   color: #000;
   background: #f9fce1;
   display: block;
-  height: 7em;
-  width: 7em;
+  height: 8em;
+  width: 8em;
   padding: 0.5em;
   -moz-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
   -webkit-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
@@ -128,17 +126,26 @@ hr {
   -moz-transition: -moz-transform 0.15s linear;
   -o-transition: -o-transform 0.15s linear;
   -webkit-transition: -webkit-transform 0.15s linear;
-  font-family: "Shadows Into Light", cursive;
+  font-family: "Shadows Into Light Two", cursive;
+  
 }
 
 .note h3 {
   margin: 0 0 5% 0;
   font-size: 1.15rem;
   font-weight: bold;
+  white-space: nowrap;
+  max-width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note p {
   margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .note-container {
@@ -201,7 +208,34 @@ hr {
   height: 600px !important;
   border-radius: 0 !important;
   background-color: #d3f6f3 !important;
-  font-family: "Shadows Into Light", cursive;
+  font-family: "Shadows Into Light Two", cursive;
+}
+
+.note-modal p {
+  margin: 1% 2.5% 3% 2.5%;
+}
+
+.scrollable-container {
+  overflow: hidden;
+}
+
+#note-title {
+  min-height: 25px;
+  max-height: 40px;
+  overflow-y: scroll;
+  box-sizing: content-box;
+}
+
+#note-description {
+  min-height: 50px;
+  max-height: 240px;
+  overflow-y: scroll;
+  box-sizing: content-box;
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* remove scrollbar space */
+  background: transparent;
 }
 
 .modal-content label,
@@ -240,7 +274,7 @@ hr {
   height: 250px;
   border-radius: 0 !important;
   background-color: #d3f6f3 !important;
-  font-family: "Shadows Into Light", cursive;
+  font-family: "Shadows Into Light Two", cursive;
 }
 
 @media only screen and (max-width: 995px) {
@@ -256,4 +290,84 @@ hr {
     height: 4rem !important;
   }
 
+  .note {
+    width: 7rem;
+    height: 7rem;
+    
+  }
+
+  .note h3 {
+    margin: 0 0 1% 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .note p {
+    margin: 0;
+    font-size: .85rem;
+  }
+  
+  .board h1 {
+    font-size: 1.75rem;
+  }
+
+  .board {
+    margin: 1%;
+  }
+
+  .column h2 {
+    font-size: 1.6rem;
+  }
+
+}
+
+@media only screen and (max-width: 725px) {
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .column {
+    min-height: none;
+  }
+
+  .note-modal.modal-dialog {
+    width: 400px !important;
+    min-width: 400px !important;
+  }
+  
+  .note-modal .modal-content {
+    height: 400px !important;
+    padding: 0;
+  }
+
+  .modal-content textarea {
+    height: 2rem !important;
+  }
+
+  .modal-header, .modal-body, .modal-footer {
+    padding: 2% !important;
+    font-size: 85%;
+  }
+  
+  .board h1 {
+    font-size: 1.5rem;
+  }
+
+  .column h2 {
+    font-size: 1.3rem;
+  }
+
+  #note-title {
+    min-height: 20px;
+    max-height: 30px;
+  }
+  
+  #note-description {
+    min-height: 30px;
+    max-height: 120px;
+  }
+}
+
+.rotate-message.modal-dialog {
+  display: none !important;
 }
