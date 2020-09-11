@@ -37,6 +37,10 @@ header h1 {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   border-radius: 10px;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .board h1 {
@@ -76,6 +80,7 @@ hr {
   text-align: center;
   font-family: "Poppins", sans-serif;
   color: #eeeeee;
+  white-space: nowrap;
 }
 
 
@@ -371,3 +376,4 @@ hr {
 .rotate-message.modal-dialog {
   display: none !important;
 }
+
