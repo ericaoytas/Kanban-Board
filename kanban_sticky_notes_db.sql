@@ -9,7 +9,9 @@ CREATE TABLE board(
 
 CREATE TABLE category(
 	id INT UNIQUE AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(15) NOT NULL
+    name VARCHAR(15) NOT NULL,
+    board_id INT NOT NULL,
+    FOREIGN KEY (board_id) REFERENCES board(id)
     );
     
 CREATE TABLE tag(
@@ -30,10 +32,8 @@ CREATE TABLE note(
     name VARCHAR(30) NOT NULL,
     description TEXT,
     color_id INT,
-    board_id INT,
     category_id INT,
     FOREIGN KEY (color_id) REFERENCES color(id),
-    FOREIGN KEY (board_id) REFERENCES board(id),
     FOREIGN KEY (category_id) REFERENCES category(id)
     );
 
@@ -44,6 +44,7 @@ CREATE TABLE note_to_tag(
     FOREIGN KEY (note_id) REFERENCES note(id),
     FOREIGN KEY (tag_id) REFERENCES tag(id)
     );
+
 
 INSERT INTO 
 		color (name, hex_value) 
