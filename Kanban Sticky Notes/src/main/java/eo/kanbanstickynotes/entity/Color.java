@@ -1,9 +1,24 @@
 package eo.kanbanstickynotes.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="color")
 public class Color {
+	
+	@Id
+	@Column(name="id")
 	private int id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="hex_value")
 	private String hexValue;
+	
 	public Color() {}
 	public Color(String name, String hexValue) {
 		super();

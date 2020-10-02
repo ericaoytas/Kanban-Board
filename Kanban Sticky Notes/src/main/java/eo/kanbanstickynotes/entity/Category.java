@@ -1,11 +1,23 @@
 package eo.kanbanstickynotes.entity;
 
-public class Category {
-	private int id;
-	private String name;
-	public Category() {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	}
+@Entity
+@Table(name="category")
+public class Category {
+	
+	@Id
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="name")
+	private String name;
+	
+	public Category() {}
+	
 	public Category(String name) {
 		this.name = name;
 	}
