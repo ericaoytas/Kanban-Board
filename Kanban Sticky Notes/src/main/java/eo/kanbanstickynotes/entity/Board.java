@@ -1,8 +1,15 @@
 package eo.kanbanstickynotes.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,11 +17,15 @@ import javax.persistence.Table;
 public class Board {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")	
 	private int id;
 	
 	@Column(name="name")
 	private String name;
+	
+	@OneToMany(mappedBy="board", cascade=CascadeType.ALL)
+	private List<Category> categories;
 	
 	public Board() {}
 	
@@ -39,9 +50,27 @@ public class Board {
 		this.name = name;
 	}
 
+	
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [id=" + id + ", name=" + name + "]";
+	}
+	
+	// convenience method for bi-directional relationship
+	public void add(Category category) {
+		if(categories == null) {
+			categories = new ArrayList<Category>();
+		}
+		categories.add(category);
+		category.setBoard(this);
 	}
 	
 }

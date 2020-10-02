@@ -1,8 +1,13 @@
 package eo.kanbanstickynotes.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +15,7 @@ import javax.persistence.Table;
 public class Note {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
@@ -19,18 +25,26 @@ public class Note {
 	@Column(name="description")
 	private String description;
 	
-	private int colorId;
-	private int boardId;
-	private int categoryId;
+	// TODO
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+			 CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="color_id")
+	private Color color;
+
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="category_id")
+	private Category category;
+	
 	public Note() {}
-	public Note(String name, String description, int colorId, int boardId, int categoryId) {
+
+	public Note(String name, String description, Color color, Category category) {
 		super();
 		this.name = name;
 		this.description = description;
-		this.colorId = colorId;
-		this.boardId = boardId;
-		this.categoryId = categoryId;
+		this.color = color;
+		this.category = category;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -49,28 +63,24 @@ public class Note {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getColorId() {
-		return colorId;
+
+	public Color getColor() {
+		return color;
 	}
-	public void setColorId(int colorId) {
-		this.colorId = colorId;
+	public void setColor(Color color) {
+		this.color = color;
 	}
-	public int getBoardId() {
-		return boardId;
+	public Category getCategory() {
+		return category;
 	}
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
-	public int getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
+
 	@Override
 	public String toString() {
-		return "Note [id=" + id + ", name=" + name + ", description=" + description + ", colorId=" + colorId
-				+ ", boardId=" + boardId + ", categoryId=" + categoryId + "]";
+		return "Note [id=" + id + ", name=" + name + ", description=" + description + ", color=" + color + ", category="
+				+ category + "]";
 	}
-	
+
 }
