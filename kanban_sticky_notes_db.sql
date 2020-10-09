@@ -16,16 +16,15 @@ CREATE TABLE category(
     
 CREATE TABLE tag(
 	id INT UNIQUE AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(15) NOT NULL
+    name VARCHAR(25) NOT NULL
     );
+    
 
 CREATE TABLE color(
 	id INT UNIQUE AUTO_INCREMENT NOT NULL PRIMARY KEY,
     name VARCHAR(20) NOT NULL,
     hex_value CHAR(6) NOT NULL
     );
-
-
     
 CREATE TABLE note(
 	id INT UNIQUE AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -55,4 +54,3 @@ INSERT INTO
         ('Water', 'DEF3FD'),
         ('Lavender', 'F0DEFD');
 
-    
