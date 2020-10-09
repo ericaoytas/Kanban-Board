@@ -32,21 +32,30 @@ public class TestMain {
 								.addAnnotatedClass(Category.class)
 								.addAnnotatedClass(Color.class)
 								.addAnnotatedClass(Note.class)
+								.addAnnotatedClass(Tag.class)
 								.buildSessionFactory();
 		
 		Session session = factory.getCurrentSession();
 		
 		try {
 			
-			// Create Board object
-			Board board = new Board("Project X");
-			
 			// Start transaction
 			session.beginTransaction();
 			
-			// Save the Board
-			session.save(board);
-			
+			// Get a note
+			int noteId = 2;
+			Note note = session.get(Note.class, noteId);
+
+			System.out.println("** NOTE INFO **");
+			System.out.println("Name: " + note.getName());
+			System.out.println("Description: " + note.getDescription());
+			System.out.println("Category: " + note.getCategory());
+			System.out.println("Tags: " + note.getTags());
+
+//			
+//			// Save the Board
+//			session.save(note);
+//			
 			// Commit the transaction
 			session.getTransaction().commit();
 			
