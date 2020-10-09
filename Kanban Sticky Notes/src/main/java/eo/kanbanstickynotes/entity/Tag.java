@@ -1,9 +1,12 @@
 package eo.kanbanstickynotes.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +27,9 @@ public class Tag {
 	@Column(name="name")
 	private String name;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY,
+				cascade={CascadeType.PERSIST, CascadeType.MERGE,
+					CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="note_to_tag",
 			joinColumns=@JoinColumn(name="tag_id"),
@@ -47,6 +52,19 @@ public class Tag {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public List<Note> getNotes() {
+		return notes;
+	}
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+	
+	public void addNote(Note note) {
+		if (notes==null) {
+			notes=new ArrayList<Note>();
+		}
+		notes.add(note);
 	}
 	@Override
 	public String toString() {

@@ -76,7 +76,7 @@ public class Category {
 	}
 
 	// convenience method for bi-directional relationship
-	public void add(Note note) {
+	public void addNote(Note note) {
 		if(notes == null) {
 			notes = new ArrayList<Note>();
 		}

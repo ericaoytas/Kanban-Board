@@ -29,9 +29,9 @@ public class Color {
 	private String hexValue;
 	
 	@OneToMany(mappedBy="color",
-			cascade={CascadeType.PERSIST, CascadeType.MERGE,
+				cascade={CascadeType.PERSIST, CascadeType.MERGE,
 					 CascadeType.DETACH, CascadeType.REFRESH},
-			fetch=FetchType.LAZY)
+				fetch=FetchType.LAZY)
 	private List<Note> notes;
 	
 	public Color() {}
@@ -64,7 +64,7 @@ public class Color {
 	}
 	
 	// convenience method for bi-directional relationship
-	public void add(Note note) {
+	public void addNote(Note note) {
 		if(notes == null) {
 			notes = new ArrayList<Note>();
 		}
