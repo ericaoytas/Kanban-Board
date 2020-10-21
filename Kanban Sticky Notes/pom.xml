@@ -14,6 +14,10 @@
   <url>http://www.example.com</url>
 
   <properties>
+ 	<springframework.version>5.1.9.RELEASE</springframework.version>
+	<hibernate.version>5.4.4.Final</hibernate.version>
+	<mysql.connector.version>8.0.17</mysql.connector.version>
+	<c3po.version>0.9.5.2</c3po.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
@@ -26,39 +30,71 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.21</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
-	<dependency>
-	    <groupId>org.hibernate.orm</groupId>
-	    <artifactId>hibernate-core</artifactId>
-	    <version>6.0.0.Alpha6</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
-	<dependency>
-	    <groupId>org.hibernate.validator</groupId>
-	    <artifactId>hibernate-validator</artifactId>
-	    <version>6.1.5.Final</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-	<dependency>
-	    <groupId>javax.servlet</groupId>
-	    <artifactId>javax.servlet-api</artifactId>
-	    <version>4.0.1</version>
-	    <scope>provided</scope>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-	<dependency>
-	    <groupId>javax.servlet</groupId>
-	    <artifactId>jstl</artifactId>
-	    <version>1.2</version>
-	</dependency>
-			
     
+	<!-- Spring -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${springframework.version}</version>
+	</dependency>
+
+	<!-- Hibernate -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+
+	<!-- MySQL -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>${mysql.connector.version}</version>
+	</dependency>
+
+	<!-- C3PO -->
+	<dependency>
+		<groupId>com.mchange</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>${c3po.version}</version>
+	</dependency>
+
+	<!-- Servlet+JSP+JSTL -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+	</dependency>
+
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>javax.servlet.jsp-api</artifactId>
+		<version>2.3.1</version>
+	</dependency>
+
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+
+	<!-- to compensate for java 9 not including jaxb -->
+	<dependency>
+	    <groupId>javax.xml.bind</groupId>
+	    <artifactId>jaxb-api</artifactId>
+	    <version>2.3.0</version>
+	</dependency>
+
   </dependencies>
 
   <build>
