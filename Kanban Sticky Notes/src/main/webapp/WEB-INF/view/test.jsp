@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Test</title>
 </head>
 <body>
@@ -11,10 +11,10 @@
 			<th>ID</th>
 			<th>Name</th>
 		</tr>
-		<c:forEach var="board" items="${boards}">
+		<c:forEach var="tempBoard" items="${boards}">
 			<tr>
-				<td> ${board.id} </td>
-				<td> ${board.name} </td>
+				<td> ${tempBoard.id} </td>
+				<td> ${tempBoard.name} </td>
 			</tr>
 		</c:forEach>
 	</table>
