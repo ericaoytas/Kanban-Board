@@ -16,7 +16,7 @@
 
 	<!-- Add support for component scanning -->
 	<context:property-placeholder location="classpath:datasource.properties" />
-	<context:component-scan base-package="${hibernate.packagesToScan}" />
+	<context:component-scan base-package="eo.kanbanstickynotes" />
 
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven/>
@@ -30,7 +30,7 @@
 	
 	<!--  Define Database DataSource / connection pool -->
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
