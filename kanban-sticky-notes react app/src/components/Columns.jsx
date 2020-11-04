@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Column from './Column';
 
 
@@ -6,7 +6,7 @@ function Columns(props) {
 
     function createColumn(notes, index) {
         return function(column) {
-            let notesInCategory = getNotesInCategory(column.name, notes);
+            let notesInCategory = getNotesInCategory(column.id, notes);
 
             return (<Column 
                 key={index}
@@ -19,9 +19,9 @@ function Columns(props) {
         }
     }
 
-    function getNotesInCategory(category, inNotes) {
+    function getNotesInCategory(categoryId, inNotes) {
         return inNotes.filter((note) => {
-          return note.category === category;
+          return note.category_id === categoryId;
         });
       }
     

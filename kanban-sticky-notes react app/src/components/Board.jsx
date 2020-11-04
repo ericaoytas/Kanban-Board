@@ -88,6 +88,10 @@ function Board(props) {
     setNotes(updatedNotes);
   }
 
+  function updateNotes(updatedNotes) {
+    setNotes(updatedNotes);
+  }
+
   // Add, delete, update Columns
   function addColumn(newColumn) {
     setColumns((prevColumns) => {
@@ -168,6 +172,8 @@ function Board(props) {
         onHide={() => hideModal()}
         modal={modalState}
         showModal={updateModal}
+        notes={notes}
+        updateNotes={updateNotes}
       />
 
       <h1 onClick={(ev)=> updateModal("board", true, "edit", "Edit Board Title", boardTitle) }>

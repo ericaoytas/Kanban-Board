@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import Notes from "../components/Notes";
+import {generateHexString} from './hexGenerator';
 function CreateEditColumn(props) {
 
     const initialState = props.modal.init;
@@ -26,10 +28,10 @@ function CreateEditColumn(props) {
   
     function handleChange(event) {
       const { name, value } = event.target;
-  
+
       setTitle(prev => {
         return {
-          ...prev,
+          prev,
           [name]: value
         };
       });
