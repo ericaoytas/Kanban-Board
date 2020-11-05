@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import eo.kanbanstickynotes.dao.*;
 import eo.kanbanstickynotes.entity.Board;
 import eo.kanbanstickynotes.entity.Category;
+import eo.kanbanstickynotes.entity.Note;
 
 @Service
 public class KanbanBoardServiceImpl implements KanbanBoardService{
@@ -19,9 +20,12 @@ public class KanbanBoardServiceImpl implements KanbanBoardService{
 	@Autowired
 	private CategoryDAO categoryDB;
 	
+	@Autowired
+	private NoteDAO noteDB;
+	
 	@Override
 	@Transactional
-	public List<Board> getBoards() {
+	public List<Board> getAllBoards() {
 		return boardDB.getAll();
 	}
 
@@ -51,7 +55,7 @@ public class KanbanBoardServiceImpl implements KanbanBoardService{
 
 	@Override
 	@Transactional
-	public List<Category> getCategories() {
+	public List<Category> getAllCategories() {
 		return categoryDB.getAll();
 	}
 
@@ -78,6 +82,21 @@ public class KanbanBoardServiceImpl implements KanbanBoardService{
 	public boolean updateCategory(Category category) {
 		return categoryDB.update(category);
 	}
+
+
+	@Override
+	@Transactional
+	public List<Note> getNotesByCategoryId(int id) {
+		return noteDB.getNotesByCategoryId(id);
+	}
+
+	@Override
+	@Transactional
+	public Note getNoteById(int id) {
+		return noteDB.getById(id);
+	}
+
+
 
 	
 }
