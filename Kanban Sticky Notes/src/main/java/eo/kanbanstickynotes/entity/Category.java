@@ -27,7 +27,7 @@ public class Category {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(mappedBy="category",cascade={CascadeType.ALL})
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="category",cascade={CascadeType.ALL})
 	private List<Note> notes;
 	
 	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
