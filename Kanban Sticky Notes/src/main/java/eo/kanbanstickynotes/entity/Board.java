@@ -6,11 +6,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="board")
@@ -24,7 +28,8 @@ public class Board {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(mappedBy="board", cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="board", cascade=CascadeType.ALL)
+	@Fetch(FetchMode.SELECT)
 	private List<Category> categories;
 	
 	public Board() {}
@@ -49,7 +54,6 @@ public class Board {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	
 	public List<Category> getCategories() {
 		return categories;
