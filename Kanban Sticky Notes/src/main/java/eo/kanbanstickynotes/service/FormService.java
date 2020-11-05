@@ -4,7 +4,7 @@ import java.util.List;
 
 import eo.kanbanstickynotes.entity.*;
 
-public interface NoteService {
+public interface FormService {
 	
 	// Note Service
 	public List<Note> getAllNotes();
