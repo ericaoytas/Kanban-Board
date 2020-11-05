@@ -19,27 +19,26 @@ public class CategoryDAOImpl implements CategoryDAO{
 	private final String GET_ALL="from " + TABLE_NAME;
 	private final String WHERE_PARAM= "id";
 	private final String DELETE_BY_ID="delete from " + TABLE_NAME + " where id=:" + WHERE_PARAM;
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public boolean add(Category category) {
+	public boolean add(Category item) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(category);
+		currentSession.saveOrUpdate(item);
 		return true;
 	}
 
 	@Override
 	public List<Category> getAll() {
-		System.out.println("Category DAO impl : get all");
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Category> query = currentSession.createQuery(GET_ALL, Category.class);
 		List<Category> categories = query.getResultList();
-		System.out.println(categories);
 		return categories;
 	}
 
+	
 	@Override
 	public Category getById(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -48,15 +47,15 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 
 	@Override
-	public boolean update(Category category) {
-		boolean isSuccessful = add(category);
+	public boolean update(Category item) {
+		boolean isSuccessful = add(item);
 		return isSuccessful;
 	}
 
 	@Override
-	public boolean delete(Category category) {
+	public boolean delete(Category item) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		boolean isSuccessful = deleteById(category.getId());
+		boolean isSuccessful = deleteById(item.getId());
 		return isSuccessful;
 	}
 
@@ -68,5 +67,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 		int updateCount = query.executeUpdate();
 		return (updateCount > 0) ? true : false;
 	}
+
+
 
 }
