@@ -38,8 +38,8 @@ public class TestController {
 	@GetMapping("/list")
 	protected String listBoards(Model theModel){
 		System.out.println("DO GET method");
-		List<Board> boards = kanbanService.getBoards();
-		List<Category> categories = kanbanService.getCategories();
+		List<Board> boards = kanbanService.getAllBoards();
+		List<Category> categories = kanbanService.getAllCategories();
 		theModel.addAttribute("boards", boards);
 		theModel.addAttribute("categories", categories);
 		return "test-list";
