@@ -39,7 +39,6 @@ public class BoardController {
 	protected String listBoards(Model theModel){
 		System.out.println("Invoked: listBoards()");
 		Board mainBoard  = kanbanService.getBoardById(2);
-	
 		List<Category> categories = mainBoard.getCategories();
 		theModel.addAttribute("board", mainBoard);
 		theModel.addAttribute("categories", categories);
@@ -53,6 +52,13 @@ public class BoardController {
 		Note note = kanbanService.getNoteById(id);
 		theModel.addAttribute("note", note);
 		return "note-view";
+	}
+	
+	@GetMapping("/delete")
+	protected String deleteNote(@RequestParam("noteId") int id, Model theModel){
+		System.out.println("Invoked: deleteNote()");
+		kanbanService.deleteNoteById(id);
+		return "redirect:/board/";
 	}
 	
 }
