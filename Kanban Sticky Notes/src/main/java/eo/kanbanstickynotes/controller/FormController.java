@@ -35,6 +35,8 @@ public class FormController {
 	
 	@Autowired
 	private FormService formService;
+	@Autowired
+	private KanbanBoardService kanbanBoardService;
 	
 	@GetMapping("/view")
 	protected String viewNote(@RequestParam("noteId") int id, Model model){
@@ -45,10 +47,13 @@ public class FormController {
 	}
 	
 	@GetMapping("/edit")
-	protected String editNote(@RequestParam("noteId") int id, Model model){
+	protected String editNote(@RequestParam("noteId") int id, @RequestParam("editType") String editType, Model model){
 		System.out.println("Invoked: editNote()");
 		Note note = formService.getNoteById(id);
+		List<Color> colors = formService.getAllColors();
 		model.addAttribute("note", note);
+		model.addAttribute("colors", colors);
+		model.addAttribute("editType", editType);
 		return "note-edit";
 	}
 	
@@ -57,6 +62,19 @@ public class FormController {
 		formService.updateNote(note);
 		model.addAttribute("noteId", note.getId());
 		return "redirect:/form/view";
+	}
+	
+	@GetMapping("/addNote")
+	public String addNote(@RequestParam("categoryId") int categoryId, @RequestParam("editType") String editType, Model model) {
+		System.out.println("Invoked: addNote()");
+		Category category = kanbanBoardService.getCategoryById(categoryId);
+		Note newNote = new Note("", "", formService.getRandomColor(), category);
+		model.addAttribute("editType", editType);
+		model.addAttribute("note", newNote);
+		List<Color> colors = formService.getAllColors();
+		model.addAttribute("colors", colors);
+		
+		return "note-edit";
 	}
 }
 
