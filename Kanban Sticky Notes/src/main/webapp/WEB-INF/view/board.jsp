@@ -17,6 +17,18 @@
 						<div class="notes_table">
 							
 							<h4>${tempCategory.name}</h4>
+							
+							<!-- construct an "add" link with customer id -->
+							<c:url var="addNote" value="/form/addNote">
+								<c:param name="categoryId" value="${tempCategory.id}" />
+								<c:param name="editType" value="add" />
+							</c:url>
+							
+							<a href="${addNote}">Create New Note</a>
+							
+							<!-- TODO Add new note button -->
+							
+							
 							<table>
 								<tr>
 									<th>ID</th>

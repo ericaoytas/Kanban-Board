@@ -4,14 +4,23 @@
 
 		<h3>Edit Note</h3>
 		
-		<c:url var="viewLink" value="/form/view">
-			<c:param name="noteId" value="${note.id}" />
-		</c:url>
+
 	
 		<form:form action="saveNote" modelAttribute="note" method="POST">
 
 			<!-- need to associate this data with board id -->
-			<form:hidden path="id" />
+			<c:if test="${editType.equals('update')}">
+			    <form:hidden path="id" />
+				<c:url var="backLink" value="/form/view">
+					<c:param name="noteId" value="${note.id}" />
+				</c:url>
+			</c:if>
+			
+			<c:if test="${editType.equals('add')}">
+				<c:url var="backLink" value="/board/"/>
+			</c:if>
+
+			<form:hidden path="category.id" />
 			
 			
 			<table>
@@ -23,19 +32,16 @@
 					
 					<tr>
 						<td><label>Description:</label></td>
-						<td><form:input path="description" /></td>
+						<td><form:textarea path="description" /></td>
 					</tr>
 					
 					<tr>
-						<form:hidden path="color.id" />
-						<td><label>Color:</label></td>
-						<td><form:input path="color.name" /></td>
-					</tr>
-					
-					<tr>
-						<form:hidden path="category.id" />
-						<td><label>Category:</label></td>
-						<td><form:input path="category.name" /></td>
+					    <td>Color:</td>
+					    <td>
+					    	<c:forEach var="tempColor" items="${colors}">
+					    	${tempColor.name}: <form:radiobutton path="color.id" value="${tempColor.id}"/> <br/>
+					    	</c:forEach>
+					    </td>
 					</tr>
 					
 					<tr>
@@ -53,7 +59,7 @@
 		
 		
 		
-		<a href="${viewLink}">Back to View</a>
+		<a href="${backLink}">Cancel</a>
 
 </div>
 

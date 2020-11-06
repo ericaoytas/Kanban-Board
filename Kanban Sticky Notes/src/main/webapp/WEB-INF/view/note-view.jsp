@@ -36,6 +36,7 @@
 	
 	<c:url var="editLink" value="/form/edit">
 			<c:param name="noteId" value="${note.id}" />
+			<c:param name="editType" value="update" />
 	</c:url>
 	
 	<a href="${editLink}">Edit Note</a>
