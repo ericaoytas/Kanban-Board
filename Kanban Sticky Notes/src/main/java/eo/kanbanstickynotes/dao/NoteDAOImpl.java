@@ -18,9 +18,7 @@ public class NoteDAOImpl implements NoteDAO{
 	private final String GET_ALL="from " + TABLE_NAME;
 	private final String WHERE_PARAM= "id";
 	private final String DELETE_BY_ID="delete from " + TABLE_NAME + " where id=:" + WHERE_PARAM;
-//	private final String GET_BY_BOARD_ID="select i from " + TABLE_NAME + " JOIN FETCH i.board where i.id=:" + WHERE_PARAM;
 	private final String GET_BY_CATEGORY_ID="select i from " + TABLE_NAME + " JOIN FETCH i.category where i.id=:" + WHERE_PARAM;
-//	private final String GET_BY_TAG_ID="select i from " + TABLE_NAME + " JOIN FETCH i.tag where i.id=:" + WHERE_PARAM;
 	private final String GET_BY_COLOR_ID="select i from " + TABLE_NAME + " JOIN FETCH i.color where i.id=:" + WHERE_PARAM;
 	
 	@Autowired
@@ -65,7 +63,7 @@ public class NoteDAOImpl implements NoteDAO{
 	@Override
 	public boolean deleteById(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<?> query = currentSession.createQuery(DELETE_BY_ID, Note.class);
+		Query query = currentSession.createQuery(DELETE_BY_ID);
 		query.setParameter(WHERE_PARAM, id);
 		int updateCount = query.executeUpdate();
 		return (updateCount > 0) ? true : false;
