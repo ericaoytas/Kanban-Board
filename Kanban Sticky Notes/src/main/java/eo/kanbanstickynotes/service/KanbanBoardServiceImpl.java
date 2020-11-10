@@ -96,6 +96,12 @@ public class KanbanBoardServiceImpl implements KanbanBoardService{
 		return noteDB.getById(id);
 	}
 
+	@Override
+	@Transactional
+	public boolean deleteNoteById(int id) {
+		return noteDB.deleteById(id);
+	}
+
 
 
 	

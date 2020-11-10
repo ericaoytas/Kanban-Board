@@ -23,4 +23,5 @@ public interface KanbanBoardService {
 	// Note Basics
 	public List<Note> getNotesByCategoryId(int id);	
 	public Note getNoteById(int id);
+	public boolean deleteNoteById(int id);
 }

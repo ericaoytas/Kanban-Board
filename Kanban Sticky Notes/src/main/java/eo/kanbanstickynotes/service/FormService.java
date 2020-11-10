@@ -25,8 +25,9 @@ public interface FormService {
 	public boolean deleteTag(Tag tag);
 	
 	// Color Service
-	public List<Tag> getAllColors();
+	public List<Color> getAllColors();
 	public Color getColorById(int id);
+	public Color getRandomColor();
 	public boolean addColor(Color color);
 	public boolean updateColor(Color color);
 	public boolean deleteColor(Color color);

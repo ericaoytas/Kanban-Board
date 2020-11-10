@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import eo.kanbanstickynotes.dao.ColorDAO;
 import eo.kanbanstickynotes.dao.NoteDAO;
 import eo.kanbanstickynotes.entity.Board;
 import eo.kanbanstickynotes.entity.Category;
@@ -19,6 +20,9 @@ public class FormServiceImpl implements FormService {
 
 	@Autowired
 	private NoteDAO noteDB;
+	
+	@Autowired
+	private ColorDAO colorDB;
 	
 	@Override
 	@Transactional
@@ -63,8 +67,7 @@ public class FormServiceImpl implements FormService {
 	@Override
 	@Transactional
 	public boolean addNote(Note note) {
-		// TODO Auto-generated method stub
-		return false;
+		return noteDB.add(note);
 	}
 
 	@Override
@@ -117,9 +120,8 @@ public class FormServiceImpl implements FormService {
 
 	@Override
 	@Transactional
-	public List<Tag> getAllColors() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Color> getAllColors() {
+		return colorDB.getAll();
 	}
 
 	@Override
@@ -148,6 +150,11 @@ public class FormServiceImpl implements FormService {
 	public boolean deleteColor(Color color) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	@Transactional
+	public Color getRandomColor() {
+		return colorDB.getRandomColor();
 	}
 
 }
