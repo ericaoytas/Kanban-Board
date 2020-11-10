@@ -28,7 +28,7 @@ public class Board {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="board", cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="board", cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SELECT)
 	private List<Category> categories;
 	
