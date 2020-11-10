@@ -8,6 +8,7 @@ public interface CategoryDAO extends DAO<Category>{
 	
 	// Create
 	// Read
+	public List<Category> getCategoriesByBoardId(int id);
 	// Update
 	// Delete
 }

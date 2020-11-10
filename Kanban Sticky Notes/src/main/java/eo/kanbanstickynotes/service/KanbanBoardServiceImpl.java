@@ -102,6 +102,12 @@ public class KanbanBoardServiceImpl implements KanbanBoardService{
 		return noteDB.deleteById(id);
 	}
 
+	@Override
+	@Transactional
+	public List<Category> getCategoriesByBoardId(int id) {
+		return categoryDB.getCategoriesByBoardId(id);
+	}
+
 
 
 	

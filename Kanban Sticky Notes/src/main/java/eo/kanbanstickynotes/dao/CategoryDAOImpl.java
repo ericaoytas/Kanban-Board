@@ -19,6 +19,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 	private final String GET_ALL="from " + TABLE_NAME;
 	private final String WHERE_PARAM= "id";
 	private final String DELETE_BY_ID="delete from " + TABLE_NAME + " where id=:" + WHERE_PARAM;
+	private final String GET_BY_BOARD_ID="select i from " + TABLE_NAME + " i where i.board.id=:" + WHERE_PARAM;
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -66,6 +67,16 @@ public class CategoryDAOImpl implements CategoryDAO{
 		query.setParameter(WHERE_PARAM, id);
 		int updateCount = query.executeUpdate();
 		return (updateCount > 0) ? true : false;
+	}
+
+	@Override
+	public List<Category> getCategoriesByBoardId(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Category> query = currentSession.createQuery(GET_BY_BOARD_ID, Category.class);
+		query.setParameter(WHERE_PARAM,  id);
+		
+		List<Category> categories = query.getResultList();
+		return categories;
 	}
 
 

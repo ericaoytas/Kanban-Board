@@ -15,6 +15,7 @@ public interface KanbanBoardService {
 	
 	// Category Service
 	public List<Category> getAllCategories();
+	public List<Category> getCategoriesByBoardId(int id);
 	public Category getCategoryById(int id);
 	public boolean addCategory(Category category);
 	public boolean deleteCategory(Category category);
