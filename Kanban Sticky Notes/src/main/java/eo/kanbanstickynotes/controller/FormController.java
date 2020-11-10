@@ -58,15 +58,16 @@ public class FormController {
 	}
 	
 	@PostMapping("/saveNote")
-	public String saveNote(Note note, Model model) {
+	public String saveNote(@ModelAttribute("note") Note note, Model model) {
 		formService.updateNote(note);
 		model.addAttribute("noteId", note.getId());
 		return "redirect:/form/view";
 	}
 	
 	@GetMapping("/addNote")
-	public String addNote(@RequestParam("categoryId") int categoryId, @RequestParam("editType") String editType, Model model) {
+	public String addNote(@RequestParam("category") Category categoryObj, @RequestParam("categoryId") int categoryId, @RequestParam("editType") String editType, Model model) {
 		System.out.println("Invoked: addNote()");
+		
 		Category category = kanbanBoardService.getCategoryById(categoryId);
 		Note newNote = new Note("", "", formService.getRandomColor(), category);
 		model.addAttribute("editType", editType);
