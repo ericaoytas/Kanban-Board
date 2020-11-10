@@ -30,8 +30,9 @@ public class Category {
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="category",cascade={CascadeType.ALL})
 	private List<Note> notes;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
-						 CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToOne(cascade={CascadeType.MERGE,
+						 CascadeType.DETACH, 
+						 CascadeType.REFRESH})
 	@JoinColumn(name="board_id")
 	private Board board;
 	

@@ -32,12 +32,13 @@ public class Note {
 	private String description;
 	
 	// TODO
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+	@ManyToOne(cascade={CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="color_id")
 	private Color color;
 
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE,
+			 			CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="category_id")
 	private Category category;
 	
