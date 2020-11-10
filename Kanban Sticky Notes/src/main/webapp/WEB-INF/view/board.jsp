@@ -6,8 +6,9 @@
 		<form:form action="selectBoard" modelAttribute="board" method="POST">
 			<form:select path="id">
 				<c:forEach var="tempBoard" items="${boards}">
-					<form:option value="${tempBoard}" label="${tempBoard.name}" />
+					<form:option value="${tempBoard.id}" label="${tempBoard.name}" />
 				</c:forEach>
+				<input type="submit" value="Select"/>
 			</form:select>
 		</form:form>
 	

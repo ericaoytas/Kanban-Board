@@ -36,17 +36,36 @@ public class BoardController {
 	private KanbanBoardService kanbanService;
 	
 	@GetMapping("/")
-	protected String listBoards(Model theModel){
-		System.out.println("Invoked: listBoards()");
+	protected String viewHome(Model theModel){
+		System.out.println("Invoked: viewHome()");
+		
 		Board mainBoard  = kanbanService.getBoardById(2);
-		List<Category> categories = mainBoard.getCategories();
+		
+		List<Board> boards = kanbanService.getAllBoards();
+		List<Category> categories = kanbanService.getCategoriesByBoardId(mainBoard.getId());
 		theModel.addAttribute("board", mainBoard);
+		theModel.addAttribute("boards", boards);
 		theModel.addAttribute("categories", categories);
 		
 		return "board";
 	}
 	
-	@GetMapping("/view")
+	@PostMapping("/selectBoard")
+	protected String selectBoard(@ModelAttribute("board") Board board, Model theModel){
+		System.out.println("Invoked: selectBoard()");
+		
+		Board mainBoard  = kanbanService.getBoardById(board.getId());
+		
+		List<Board> boards = kanbanService.getAllBoards();
+		List<Category> categories = kanbanService.getCategoriesByBoardId(mainBoard.getId());
+		theModel.addAttribute("board", mainBoard);
+		theModel.addAttribute("boards", boards);
+		theModel.addAttribute("categories", categories);
+		
+		return "board";
+	}
+	
+	@GetMapping("/view/note")
 	protected String viewNote(@RequestParam("noteId") int id, Model theModel){
 		System.out.println("Invoked: viewNote()");
 		Note note = kanbanService.getNoteById(id);
