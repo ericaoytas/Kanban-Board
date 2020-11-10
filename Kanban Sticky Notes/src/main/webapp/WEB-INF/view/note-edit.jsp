@@ -3,8 +3,6 @@
 <div id="note_edit">
 
 		<h3>Edit Note</h3>
-		
-
 	
 		<form:form action="saveNote" modelAttribute="note" method="POST">
 

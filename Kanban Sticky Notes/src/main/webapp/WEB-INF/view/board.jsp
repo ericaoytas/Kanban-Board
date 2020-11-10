@@ -1,4 +1,18 @@
 <%@ include file= "header.jsp" %>
+	
+	<div>
+	
+		<h3> Choose a Board. </h3>
+		<form:form action="selectBoard" modelAttribute="board" method="POST">
+			<form:select path="id">
+				<c:forEach var="tempBoard" items="${boards}">
+					<form:option value="${tempBoard}" label="${tempBoard.name}" />
+				</c:forEach>
+			</form:select>
+		</form:form>
+	
+	</div>
+	
 	<div>
 		<section id="board_title">
 		
