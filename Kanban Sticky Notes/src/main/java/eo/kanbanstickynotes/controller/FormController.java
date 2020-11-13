@@ -65,7 +65,7 @@ public class FormController {
 	}
 	
 	@GetMapping("/addNote")
-	public String addNote(@RequestParam("category") Category categoryObj, @RequestParam("categoryId") int categoryId, @RequestParam("editType") String editType, Model model) {
+	public String addNote( @RequestParam("categoryId") int categoryId, @RequestParam("editType") String editType, Model model) {
 		System.out.println("Invoked: addNote()");
 		
 		Category category = kanbanBoardService.getCategoryById(categoryId);
@@ -76,6 +76,23 @@ public class FormController {
 		model.addAttribute("colors", colors);
 		
 		return "note-edit";
+	}
+	
+	@PostMapping("/saveCategory")
+	public String saveCategory(@ModelAttribute("category") Category category, Model model) {
+		kanbanBoardService.updateCategory(category);
+		model.addAttribute("categoryId", category.getId());
+		return "redirect:/form/view";
+	}
+	
+	@GetMapping("/addCategory")
+	public String addCategory(@RequestParam("boardId") int boardId, @RequestParam("editType") String editType, Model model) {
+		System.out.println("Invoked: addNote()");
+		
+		Board board = kanbanBoardService.getBoardById(boardId);
+		Category category = new Category("", board);
+		
+		return "category-edit";
 	}
 }
 

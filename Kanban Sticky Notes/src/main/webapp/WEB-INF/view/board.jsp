@@ -25,6 +25,13 @@
 		<section id="board_notes">
 			<div class="flex-container">
 			
+				<c:url var="addCategory" value="/form/addCategory">
+					<c:param name="boardId" value="${board.id}" />
+					<c:param name="editType" value="add" />
+				</c:url>
+							
+				<a href="${addCategory}">Create New Category</a>
+				
 				<!-- TODO: Loop for all categories -->
 				<c:forEach var="tempCategory" items="${categories}">
 					<div class="category_group">

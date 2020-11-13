@@ -36,6 +36,13 @@ public class Category {
 	@JoinColumn(name="board_id")
 	private Board board;
 	
+	public Category() {}
+	
+	public Category(String name, Board board) {
+		this.name = name;
+		this.board = board;
+	}
+	
 	public List<Note> getNotes() {
 		return notes;
 	}
@@ -52,11 +59,7 @@ public class Category {
 		this.board = board;
 	}
 
-	public Category() {}
-	
-	public Category(String name) {
-		this.name = name;
-	}
+
 	public int getId() {
 		return id;
 	}
