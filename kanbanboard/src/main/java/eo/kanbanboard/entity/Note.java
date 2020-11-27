@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="note")
 public class Note {
@@ -31,17 +33,20 @@ public class Note {
 	@Column(name="description")
 	private String description;
 	
-	// TODO
 	@ManyToOne(cascade={CascadeType.MERGE,
 			 CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="color_id")
 	private Color color;
 
-	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.PERSIST, CascadeType.MERGE,
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY,
+				cascade={CascadeType.PERSIST, CascadeType.MERGE,
 			 			CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="category_id")
 	private Category category;
 	
+	// TODO: Implement Tags
+	@JsonIgnore
 	@ManyToMany(fetch=FetchType.LAZY,
 				cascade={CascadeType.PERSIST, CascadeType.MERGE,
 						CascadeType.DETACH, CascadeType.REFRESH})

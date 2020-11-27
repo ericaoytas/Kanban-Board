@@ -16,6 +16,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity
 @Table(name="board")
 public class Board {
@@ -28,6 +31,7 @@ public class Board {
 	@Column(name="name")
 	private String name;
 	
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="board", cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SELECT)
 	private List<Category> categories;

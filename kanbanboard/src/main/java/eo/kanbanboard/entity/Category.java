@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="category")
 public class Category {
@@ -30,6 +32,7 @@ public class Category {
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="category",cascade={CascadeType.ALL})
 	private List<Note> notes;
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.MERGE,
 						 CascadeType.DETACH, 
 						 CascadeType.REFRESH})
@@ -73,9 +76,10 @@ public class Category {
 		this.name = name;
 	}
 	
+
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "Category [id=" + id + ", name=" + name + ", notes=" + notes + ", board=" + board + "]";
 	}
 
 	// convenience method for bi-directional relationship
