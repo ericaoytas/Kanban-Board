@@ -15,8 +15,8 @@
 	<description>Spring Boot API for Kanban Board Application</description>
 
 	<properties>
-		<java.version>14</java.version>
-		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<java.version>8</java.version>
+		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -57,6 +57,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+		            <source>8</source> 
+		            <target>8</target>
+		        </configuration>
 			</plugin>
 		</plugins>
 	</build>

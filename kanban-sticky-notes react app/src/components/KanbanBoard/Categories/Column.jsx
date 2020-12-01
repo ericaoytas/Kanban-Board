@@ -1,5 +1,5 @@
 import React from 'react';
-import Notes from './Notes'
+import Notes from '../../Notes'
 
 
 function Column(props) {

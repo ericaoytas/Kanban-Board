@@ -135,7 +135,7 @@ hr {
   
 }
 
-.note h3 {
+.Note h3 {
   margin: 0 0 5% 0;
   font-size: 1.15rem;
   font-weight: bold;
@@ -145,7 +145,7 @@ hr {
   text-overflow: ellipsis;
 }
 
-.note p {
+.Note p {
   margin: 0;
   overflow: hidden;
   display: -webkit-box;
@@ -159,23 +159,23 @@ hr {
   float: left;
 }
 
-.notes .note-container:nth-child(2n) .note {
+.Notes .note-container:nth-child(2n) .note {
   position: relative;
   background: #fee9b2;
 }
 
-.notes .note-container:nth-child(3n) .note {
+.Notes .note-container:nth-child(3n) .note {
   position: relative;
   background: #d3f6f3;
 }
 
-.notes .note-container:nth-child(5n) .note {
+.Notes .note-container:nth-child(5n) .note {
   position: relative;
   background: #fbd1b7;
 }
 
-.notes .note-container .note:hover,
-.notes .note-container .note:focus {
+.Notes .note-container .note:hover,
+.Notes .note-container .note:focus {
   box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.8);
   -moz-box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.8);
   -webkit-box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.8);

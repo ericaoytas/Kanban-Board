@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Notes from "../components/Notes";
-import {generateHexString} from './hexGenerator';
+import {generateHexString} from '../hexGenerator';
 function CreateEditColumn(props) {
 
     const initialState = props.modal.init;

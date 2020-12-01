@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import Columns from "./Columns";
-import NoteModal from "../modals/NoteModal";
-import NewDropdown from "./NewDropdown";
-import TitleModal from "../modals/TitleModal";
-import MessageModal from "../modals/MessageModal";
+import Columns from "../../Columns";
+import NoteModal from "../../modals/NoteModal";
+import NewDropdown from "../../NewDropdown";
+import TitleModal from "../../modals/TitleModal";
+import MessageModal from "../../modals/MessageModal";
 
 
 
 
 function Board(props) {
-  
   // Hooks
   const [boardTitle, setBoardTitle] = useState(props.noteData.board[0]);
   const [notes, setNotes] = useState(props.noteData.notes);

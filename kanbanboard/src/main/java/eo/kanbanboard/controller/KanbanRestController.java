@@ -3,6 +3,7 @@ package eo.kanbanboard.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import eo.kanbanboard.entity.Note;
 import eo.kanbanboard.exceptionhandler.ItemNotFoundException;
 import eo.kanbanboard.service.KanbanService;
 import eo.kanbanboard.service.NoteDetailService;
-
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class KanbanRestController {
