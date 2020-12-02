@@ -1,16 +1,39 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Title from '../Title';
 import Notes from '../Notes/Notes';
+import NoteModals from '../../modals/NoteModals/NoteModals'
 function Category (props) {
 
     const title = props.name;
     const customClassName = "categoryTitle";
 
+    const [modalState, setModalState] = useState({
+        isShow: false, 
+        type:"ViewNote", 
+        selectedId:1
+    });
+
+
+    // Set State
+    function updateModalState(isShow, type, selectedId) {
+        setModalState({
+            isShow: isShow,
+            type: type,
+            selectedId: selectedId
+        });
+    }
+
     return (
         <div className="Category">
             <Title title={title} customClassName={customClassName}/>
             <Notes notes={props.notes}
-                showModal={props.showModal}
+                showModal={updateModalState}
+            />
+            <NoteModals 
+                modal={modalState}
+                showModal={updateModalState}
+                onHide={() => updateModalState(false, modalState.type, modalState.selectedId)}
+                categoryId={props.id}
             />
         </div>
     )
