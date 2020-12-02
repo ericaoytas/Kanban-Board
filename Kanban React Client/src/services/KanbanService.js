@@ -38,7 +38,30 @@ function getNoteById(id) {
     return axios.get(NOTE_REST_API_URL + `/${id}`);
 }
 
+function addNote(note, category, color) {
+    return axios.post(NOTE_REST_API_URL, note, {
+        params: {
+            category: category,
+            color: color
+        }
+    })
+}
 
+function updateNote(note, category, color) {
+    return axios.put(NOTE_REST_API_URL, note, {
+        params: {
+            category: category,
+            color: color
+        }
+    })
+}
 
-
-export {getBoards, getBoardById, getCategoriesByBoardId, getNotesByCategoryId, getNoteById};
+export {
+    getBoards, 
+    getBoardById, 
+    getCategoriesByBoardId, 
+    getNotesByCategoryId, 
+    getNoteById,
+    addNote,
+    updateNote
+};
