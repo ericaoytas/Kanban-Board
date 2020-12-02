@@ -23,7 +23,7 @@ function ViewNoteModal(props) {
       <Modal.Body>
         <h4>{props.note.name}</h4>
         <p>
-          Note description: {props.note.description}. Note id is {props.note.id}
+          {props.note.description}. Note id is {props.note.id}
         </p>
       </Modal.Body>
       <Modal.Footer>

@@ -3,31 +3,38 @@ import ViewNoteModal from './ViewNoteModal';
 import EditNoteModal from './EditNoteModal';
 
 import * as api from '../../../services/KanbanService';
+import * as log from '../../../services/ErrorHandler';
 
 function Modals(props) {
-    let selectedModal = null;
+    
 
     // States
     const [note, setNote] = useState({id:0, name:"", description:"", color:{}})
 
+    // Get note
     useEffect(() => {
+        if (props.modal.selectedId > 0) {
             api.getNoteById(props.modal.selectedId).then(response=> {
                 setNote(response.data);
-            }).catch(function (error) {
-                if (error.response) {
-                  console.log(error.response.data);
-                  console.log(error.response.status);
-                  console.log(error.response.headers);
-                } else if (error.request) {
-                  console.log(error.request);
-                } else {
-                  console.log('Error', error.message);
-                }
-                console.log(error.config);
-              });  
+            }).catch(error => log.logError(error)); 
+        }
     });
 
+    // TODO: Add Note
+
+    // TODO: Delete Note
+
+    // TODO: Update Note
+    function updateNote(updatedNote){
+        api.updateNote(updatedNote, props.categoryId, updatedNote.color.id).then(response=> {
+            setNote(response.data);
+        }).catch(error => log.logError(error)); 
+    }
+
+
     // Select type of modal
+    let selectedModal = null;
+
     switch(props.modal.type) {
         case "EditNote":
             selectedModal = 
@@ -36,6 +43,7 @@ function Modals(props) {
                     showModal={props.showModal}
                     note={note}
                     onHide={props.onHide}
+                    update={updateNote}
                     />
             break;
         case "ViewNote":

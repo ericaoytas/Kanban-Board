@@ -1,11 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button'
 function EditNoteModal(props) {
 
+    // State
+    const [note, setNote] = useState(props.note);
+  
+    // Set state
+    function handleChange(event) {
+      const { name, value } = event.target;
+  
+      setNote(prev => {
+        return {
+          ...prev,
+          [name]: value
+        };
+      });
+    }
+  
     function viewNote() {
-        props.showModal(true, "ViewNote", props.note.id);
+        props.showModal(true, "ViewNote", note.id);
+    }
+
+    // Update Note
+    function saveNote() {
+        props.update(note);
+        viewNote();
     }
 
     return (
@@ -25,12 +46,12 @@ function EditNoteModal(props) {
             <Form.Group controlId="formNoteTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control 
-              name="title"
-              value={props.note.name}
+              name="name"
+              value={note.name}
               type="text" 
               placeholder="Enter note title" 
               required
-            //   onChange={handleChange}
+              onChange={handleChange}
               autoComplete="off"
               />
             </Form.Group>
@@ -38,11 +59,11 @@ function EditNoteModal(props) {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 name="description"
-                value={props.note.description}
+                value={note.description}
                 as="textarea"
                 rows="3"
                 placeholder="Enter note description"
-                // onChange={handleChange}
+                onChange={handleChange}
                 autoComplete="off"
               />
             </Form.Group>
@@ -51,7 +72,7 @@ function EditNoteModal(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={viewNote}>Cancel</Button> 
-          <Button onClick={viewNote}>Save</Button>
+          <Button onClick={saveNote}>Save</Button>
         </Modal.Footer>
       </Modal>
     )
