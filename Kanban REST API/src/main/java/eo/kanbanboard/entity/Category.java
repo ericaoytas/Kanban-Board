@@ -79,7 +79,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", notes=" + notes + ", board=" + board + "]";
+		return "Category [id=" + id + ", name=" + name + ", board=" + board.getId() + "]";
 	}
 
 	// convenience method for bi-directional relationship

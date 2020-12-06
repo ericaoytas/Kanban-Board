@@ -17,6 +17,7 @@ public class KanbanRestExceptionHandler {
 	@ExceptionHandler
 	public ResponseEntity<KanbanErrorResponse> handleException(Exception exc) {
 		KanbanErrorResponse error = new KanbanErrorResponse(HttpStatus.BAD_REQUEST.value(), exc.getMessage(), System.currentTimeMillis());
+		exc.printStackTrace();
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 }

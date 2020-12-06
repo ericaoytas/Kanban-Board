@@ -33,14 +33,14 @@ public class Note {
 	@Column(name="description")
 	private String description;
 	
-	@ManyToOne(cascade={CascadeType.MERGE,
+	@ManyToOne(cascade={
 			 CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="color_id")
 	private Color color;
 
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY,
-				cascade={CascadeType.PERSIST, CascadeType.MERGE,
+				cascade={CascadeType.PERSIST,
 			 			CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="category_id")
 	private Category category;
@@ -48,7 +48,7 @@ public class Note {
 	// TODO: Implement Tags
 	@JsonIgnore
 	@ManyToMany(fetch=FetchType.LAZY,
-				cascade={CascadeType.PERSIST, CascadeType.MERGE,
+				cascade={CascadeType.PERSIST,
 						CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="note_to_tag",
@@ -115,8 +115,8 @@ public class Note {
 
 	@Override
 	public String toString() {
-		return "Note [id=" + id + ", name=" + name + ", description=" + description + ", color=" + color + ", category="
-				+ category + "]";
+		return "Note [id=" + id + ", name=" + name + ", description=" + description + ", color=" + color.getId() + ", category="
+				+ category.getId() + "]";
 	}
 
 }
