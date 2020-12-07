@@ -1,5 +1,4 @@
 import React from "react";
-import ViewNote from "../../modals/ViewNote";
 
 function Note(props) {
 

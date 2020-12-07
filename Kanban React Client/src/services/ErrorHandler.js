@@ -1,5 +1,3 @@
-import React from 'react';
-
 function logError(error) {
     if (error.response) {
         console.log(error.response.data);

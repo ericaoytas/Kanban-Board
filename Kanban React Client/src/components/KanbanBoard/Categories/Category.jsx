@@ -26,6 +26,7 @@ function Category (props) {
     return (
         <div className="Category">
             <Title title={title} customClassName={customClassName}/>
+            <button onClick={() => updateModalState(true, "CreateNote", 0)}>Add Note</button>
             <Notes notes={props.notes}
                 showModal={updateModalState}
             />

@@ -56,6 +56,10 @@ function updateNote(note, category, color) {
     })
 }
 
+function deleteNote(id) {
+    return axios.delete(NOTE_REST_API_URL + `/${id}`);
+}
+
 export {
     getBoards, 
     getBoardById, 
@@ -63,5 +67,6 @@ export {
     getNotesByCategoryId, 
     getNoteById,
     addNote,
-    updateNote
+    updateNote,
+    deleteNote
 };

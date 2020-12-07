@@ -19,15 +19,29 @@ function EditNoteModal(props) {
       });
     }
   
+    // Create
+    function addNote() {
+      props.create(note);
+      viewNote();
+    }
+ 
+    // Read
     function viewNote() {
         props.showModal(true, "ViewNote", note.id);
     }
 
-    // Update Note
+    // Update
     function saveNote() {
         props.update(note);
         viewNote();
     }
+
+    // Delete Note
+    function deleteNote() {
+        props.delete(note.id);
+        props.onHide();
+    }
+    
 
     return (
         <Modal
@@ -38,7 +52,7 @@ function EditNoteModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            {props.title}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -71,8 +85,15 @@ function EditNoteModal(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+
+          { // Show delete button only if editing a note (not creating)
+            props.type === "EditNote" ? 
+              <Button onClick={() => {if (window.confirm('Are you sure you want to permanently remove this item?')) deleteNote() }}>Delete</Button> 
+              : null
+          }
+          
           <Button onClick={viewNote}>Cancel</Button> 
-          <Button onClick={saveNote}>Save</Button>
+          <Button onClick={() => props.type === "EditNote"? saveNote() : addNote() }>Save</Button>
         </Modal.Footer>
       </Modal>
     )

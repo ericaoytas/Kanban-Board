@@ -17,7 +17,7 @@ function ViewNoteModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          {props.title}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -28,7 +28,7 @@ function ViewNoteModal(props) {
       </Modal.Body>
       <Modal.Footer>
         {/* TODO: Delete Note */}
-        <Button onClick={props.onHide}>Delete</Button> 
+        <Button onClick={props.onHide}>Close</Button> 
         <Button onClick={editNote}>Edit</Button>
       </Modal.Footer>
     </Modal>

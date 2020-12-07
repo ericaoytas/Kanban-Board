@@ -19,7 +19,7 @@ function KanbanBoard() {
             setCurrentBoard(response.data);
         }).catch(error => log.logError(error)); 
 
-    });
+    }, [currentBoard]);
 
     return (
         <div className="KanbanBoard">
