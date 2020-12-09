@@ -12,3 +12,4 @@ Servers/Tomcat v9.0 Server at localhost-config/catalina.properties
 Servers/Tomcat v9.0 Server at localhost-config/context.xml
 Servers/Tomcat v9.0 Server at localhost-config/tomcat-users.xml
 Servers/Tomcat v9.0 Server at localhost-config/server.xml
+schema.png
