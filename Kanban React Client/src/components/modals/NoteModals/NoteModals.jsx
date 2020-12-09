@@ -6,35 +6,40 @@ import EditNoteModal from './EditNoteModal';
 import * as api from '../../../services/KanbanService';
 import * as log from '../../../services/ErrorHandler';
 
-function Modals(props) {
+function NoteModals(props) {
     
+    const {modal, categoryId, fetchCategories, ...rest} = props;
+
     const blankNote = { id:0, name:"",description:"",  color: {id:1} };
     
     // States
     const [note, setNote] = useState(blankNote);
  
-
     // Read note
     useEffect(() => {
-        if (props.modal.selectedId > 0 && props.modal.isShow) {
-            api.getNoteById(props.modal.selectedId).then(response=> {
+        if (modal.selectedId > 0 && modal.isShow) {
+            api.getNoteById(modal.selectedId).then(response=> {
                 setNote(response.data);
             }).catch(error => log.logError(error)); 
-        } else {
-            setNote(blankNote);
-        }
-    },[props.modal, blankNote]);
+        } 
+        // else {
+        //     setNote(blankNote);
+        // }
+        console.log("useEffect() in NoteModals: \n id: " + modal.selectedId + " \n isShow: " + modal.isShow);
+        return () => fetchCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[fetchCategories, modal.isShow, modal.selectedId]);
 
     // Create note
     function addNote(newNote) {
-        api.addNote(newNote, props.categoryId, newNote.color.id).then(response=>{
+        api.addNote(newNote, categoryId, newNote.color.id).then(response=>{
             setNote(response.data);
         }).catch(error => log.logError(error));
     }
 
     // Update note
     function updateNote(updatedNote){
-        api.updateNote(updatedNote, props.categoryId, updatedNote.color.id).then(response=> {
+        api.updateNote(updatedNote, categoryId, updatedNote.color.id).then(response=> {
             setNote(response.data);
         }).catch(error => log.logError(error)); 
     }
@@ -44,6 +49,14 @@ function Modals(props) {
         api.deleteNote(noteId).then(response => {
             console.log(response.data);
         }).catch(error => log.logError(error));
+        fetchCategories();
+    }
+
+    // Crud Operations
+    const operations = {
+        create: addNote,
+        update: updateNote,
+        delete: deleteNote,
     }
 
     // Select type of modal
@@ -54,28 +67,22 @@ function Modals(props) {
             selectedModal = 
                 <EditNoteModal 
                     title="Create New Note"
-                    show={props.modal.isShow} 
-                    showModal={props.showModal}
                     note={note}
-                    onHide={props.onHide}
-                    create={addNote}
-                    update={updateNote}
-                    delete={deleteNote}
-                    type={props.modal.type}
+                    operations={operations}
+                    modal={modal}
+                    {...rest}
+                    show={modal.isShow}
                 />
             break;
         case "EditNote":
             selectedModal = 
                 <EditNoteModal 
                     title="Edit Note"
-                    show={props.modal.isShow} 
-                    showModal={props.showModal}
                     note={note}
-                    onHide={props.onHide}
-                    create={addNote}
-                    update={updateNote}
-                    delete={deleteNote}
-                    type={props.modal.type}
+                    operations={operations}
+                    modal={modal}
+                    {...rest}
+                    show={modal.isShow}
                     />
             break;
         case "ViewNote":
@@ -83,10 +90,10 @@ function Modals(props) {
             selectedModal = 
                 <ViewNoteModal 
                     title="View Note"
-                    show={props.modal.isShow} 
-                    showModal={props.showModal}
                     note={note}
-                    onHide={props.onHide}
+                    modal={modal}
+                    {...rest}
+                    show={modal.isShow}
                     />
             break;
     }
@@ -99,4 +106,4 @@ function Modals(props) {
     )
 }
 
-export default Modals;
+export default NoteModals;

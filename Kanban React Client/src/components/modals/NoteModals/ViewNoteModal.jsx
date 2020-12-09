@@ -4,12 +4,11 @@ import Button from 'react-bootstrap/Button'
 function ViewNoteModal(props) {
 
   function editNote() {
-    props.showModal(true, "EditNote", props.note.id);
+    props.updateModal(true, "EditNote", props.note.id);
   }
 
   return (
     <Modal
-      {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -27,7 +26,6 @@ function ViewNoteModal(props) {
         </p>
       </Modal.Body>
       <Modal.Footer>
-        {/* TODO: Delete Note */}
         <Button onClick={props.onHide}>Close</Button> 
         <Button onClick={editNote}>Edit</Button>
       </Modal.Footer>

@@ -13,7 +13,6 @@ function Category (props) {
         selectedId:1
     });
 
-
     // Set State
     function updateModalState(isShow, type, selectedId) {
         setModalState({
@@ -28,13 +27,14 @@ function Category (props) {
             <Title title={title} customClassName={customClassName}/>
             <button onClick={() => updateModalState(true, "CreateNote", 0)}>Add Note</button>
             <Notes notes={props.notes}
-                showModal={updateModalState}
+                updateModal={updateModalState}
             />
             <NoteModals 
                 modal={modalState}
-                showModal={updateModalState}
+                updateModal={updateModalState}
                 onHide={() => updateModalState(false, modalState.type, modalState.selectedId)}
                 categoryId={props.id}
+                fetchCategories={props.fetchCategories}
             />
         </div>
     )

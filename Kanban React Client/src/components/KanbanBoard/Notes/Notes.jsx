@@ -8,7 +8,7 @@ function Notes(props) {
             <Note 
                 key={note.id}
                 note={note}
-                showModal={props.showModal}
+                updateModal={props.updateModal}
             />);
     }
     return (

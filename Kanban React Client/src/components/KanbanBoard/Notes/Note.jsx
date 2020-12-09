@@ -3,7 +3,7 @@ import React from "react";
 function Note(props) {
 
     function viewNote(note) {
-      props.showModal(true, "ViewNote", note.id);
+      props.updateModal(true, "ViewNote", note.id);
     }
 
   return (
