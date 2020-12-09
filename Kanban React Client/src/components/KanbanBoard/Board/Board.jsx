@@ -3,15 +3,13 @@ import Title from '../Title';
 import Categories from '../Categories/Categories';
 
 function Board(props) {
-    const title = props.board.name;
-    const customClassName = "boardTitle";
     
     return (
         <div className="Board">
-            <Title title={title} customClassName={customClassName}/> 
+            {props.board != null ? <Title title={props.board.name} customClassName="boardTitle"/>  : null}
+           
             <Categories 
-                categories={props.board.categories}
-                showModal={props.showModal}
+                categories={props.categories}
                 />
         </div>
     );

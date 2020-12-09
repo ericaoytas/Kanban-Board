@@ -31,7 +31,8 @@ public class Board {
 	@Column(name="name")
 	private String name;
 	
-	@JsonInclude(JsonInclude.Include.NON_EMPTY)
+//	@JsonInclude(JsonInclude.Include.NON_EMPTY)
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="board", cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SELECT)
 	private List<Category> categories;
