@@ -22,9 +22,7 @@ function NoteModals(props) {
                 setNote(response.data);
             }).catch(error => log.logError(error)); 
         } 
-        // else {
-        //     setNote(blankNote);
-        // }
+
         console.log("useEffect() in NoteModals: \n id: " + modal.selectedId + " \n isShow: " + modal.isShow);
         return () => fetchCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,11 +65,10 @@ function NoteModals(props) {
             selectedModal = 
                 <EditNoteModal 
                     title="Create New Note"
-                    note={note}
+                    note={blankNote}
                     operations={operations}
                     modal={modal}
                     {...rest}
-                    show={modal.isShow}
                 />
             break;
         case "EditNote":
@@ -82,7 +79,6 @@ function NoteModals(props) {
                     operations={operations}
                     modal={modal}
                     {...rest}
-                    show={modal.isShow}
                     />
             break;
         case "ViewNote":
@@ -93,7 +89,6 @@ function NoteModals(props) {
                     note={note}
                     modal={modal}
                     {...rest}
-                    show={modal.isShow}
                     />
             break;
     }

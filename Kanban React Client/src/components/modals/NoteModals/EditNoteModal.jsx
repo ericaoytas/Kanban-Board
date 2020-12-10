@@ -48,6 +48,9 @@ function EditNoteModal(props) {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        animation={false}
+        show={props.modal.isShow}
+        onHide={props.onHide}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
