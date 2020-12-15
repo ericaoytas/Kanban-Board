@@ -1,21 +1,17 @@
 import React, {useState} from 'react'
-import Title from '../Title';
 import Notes from '../Notes/Notes';
 import NoteModals from '../../modals/NoteModals/NoteModals'
 function Category (props) {
 
-    const title = props.name;
-    const customClassName = "categoryTitle";
-
-    const [modalState, setModalState] = useState({
+    const [noteModal, setNoteModal] = useState({
         isShow: false, 
         type:"ViewNote", 
         selectedId:1
     });
 
     // Set State
-    function updateModalState(isShow, type, selectedId) {
-        setModalState({
+    function updateNoteModal(isShow, type, selectedId) {
+        setNoteModal({
             isShow: isShow,
             type: type,
             selectedId: selectedId
@@ -24,15 +20,15 @@ function Category (props) {
 
     return (
         <div className="Category">
-            <Title title={title} customClassName={customClassName}/>
-            <button onClick={() => updateModalState(true, "CreateNote", 0)}>Add Note</button>
+            <h2>{props.name}</h2>
+            <button onClick={() => updateNoteModal(true, "CreateNote", 0)}>Add Note</button>
             <Notes notes={props.notes}
-                updateModal={updateModalState}
+                updateModal={updateNoteModal}
             />
             <NoteModals 
-                modal={modalState}
-                updateModal={updateModalState}
-                onHide={() => updateModalState(false, modalState.type, modalState.selectedId)}
+                modal={noteModal}
+                updateModal={updateNoteModal}
+                onHide={() => updateNoteModal(false, noteModal.type, noteModal.selectedId)}
                 categoryId={props.id}
                 fetchCategories={props.fetchCategories}
             />

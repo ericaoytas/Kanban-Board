@@ -1,0 +1,78 @@
+import React, {useState} from 'react'
+
+import {Modal, Form, Button} from 'react-bootstrap';
+
+function EditBoardModal(props) {
+
+    const [board, setBoard] = useState(props.board);
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+  
+        setBoard(prev => {
+          return {
+            ...prev,
+            [name]: value
+          };
+        });
+    }
+
+    // Update Board
+    function saveBoard(){
+        props.operations.update(board);
+        props.onHide();
+    }
+
+    // Delete Board
+    function deleteBoard(){
+      props.operations.delete(board.id);
+      props.onHide();
+    }
+
+    function consoleLog(){
+        console.log(board);
+    }
+
+    return (
+            <Modal
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            animation={true}
+            show={props.modal.isShow}
+            onHide={props.onHide}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Edit Name
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group controlId="editBoardName">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control 
+                  name="name"
+                  value={board.name}
+                  type="text" 
+                  placeholder="Enter new name" 
+                  required
+                  onChange={handleChange}
+                  autoComplete="off"
+                  />
+                </Form.Group>
+                <br />
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+    
+                <Button onClick={() => {if (window.confirm('Are you sure you want to permanently remove this item?')) deleteBoard() }}>Delete</Button> 
+              
+              <Button onClick={consoleLog}>Cancel</Button> 
+              <Button onClick={saveBoard}>Save</Button>
+            </Modal.Footer>
+          </Modal>
+    );
+}
+
+export default EditBoardModal;

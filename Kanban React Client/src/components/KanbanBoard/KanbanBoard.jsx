@@ -1,53 +1,66 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import Board from './Board/Board';
 
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+
 import * as api from '../../services/KanbanService';
 import * as log from '../../services/ErrorHandler';
 
 function KanbanBoard() {
 
+    const untitledBoard = {id: 0, name: "Untitled Board"};
 
-    // States
-    const [currentBoard, setCurrentBoard] = useState({});
+    // Boards
     const [boards, setBoards] = useState([{}]);
-
     const setBoardsHandler = useCallback(boards => {
         setBoards(boards);
-      }, []);
+    }, []);
 
-    // Effect
-    useEffect(() => {
-
-        // GET one board by id
-        // api.getBoardById(boardId).then((response) => {
-        //     setCurrentBoard(response.data);
-        // }).catch(error => log.logError(error)); 
-
+    const fetchBoards = useCallback(function() {
         // GET all boards
         api.getBoards().then((response) => {
             setBoardsHandler(response.data);
         }).catch(error => log.logError(error)); 
+    }, [])
+
+    // Effect
+    useEffect(() => {
+        fetchBoards();
+    }, [fetchBoards, setBoardsHandler]); 
 
 
-        console.log("useEffect() in KanbanBoard");
-    }, [setBoardsHandler]); 
+    // Tabs
+    const [key, setKey] = useState(boards[0].id);
 
 
 
-
-    function consoleLog() {
-        console.log(boards[1])
+    function selectTab(newKey, event) {
+        // if (newKey === "-1") addBoard(untitledBoard);
+        setKey(newKey);
     }
+
+    const boardTabs = boards.map(board => {
+        return (
+            <Tab eventKey={board.id} title={board.name}>
+                <Board board={board}/>
+            </Tab>
+        )
+    })
 
     return (
         <div className="KanbanBoard">
-            <button onClick={consoleLog}>Test</button>
-            <Board 
-                board={boards[1]} 
-                // categories={categories}
-                // showModal={updateModalState}
-                />
 
+            <Tabs
+                id="controlled-tab-example"
+                activekey={key}
+                onSelect={selectTab}
+            >
+                {boardTabs}
+                <Tab eventKey="-1" title="+"/>
+            </Tabs>
+
+            {/* <Board board={boards[1]} /> */}
         </div>
     )
 }

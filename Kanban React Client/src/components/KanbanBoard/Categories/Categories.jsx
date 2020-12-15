@@ -3,7 +3,7 @@ import Category from './Category';
 import * as api from '../../../services/KanbanService';
 import * as log from '../../../services/ErrorHandler';
 function Categories(props) {
-    const boardId = 2;
+
     const [categories, setCategories] = useState([{}]);
     
     const setCategoriesHandler = useCallback(categories => {
@@ -13,17 +13,17 @@ function Categories(props) {
           // eslint-disable-next-line react-hooks/exhaustive-deps
     const fetchCategories = useCallback(function() {
         // Get categories by board
-        api.getCategoriesByBoardId(boardId).then((response) => {
-            setCategoriesHandler(response.data);
-        }).catch(error => log.logError(error)); 
-        
-    },[]);
+        if (props.boardId > 0) {
+            api.getCategoriesByBoardId(props.boardId).then((response) => {
+                setCategoriesHandler(response.data);
+            }).catch(error => log.logError(error)); 
+        }
+    },[props.boardId, setCategoriesHandler]);
 
     useEffect(() => {
         fetchCategories();
-        console.log("useEffect() in Categories");
     // eslint-disable-next-line no-use-before-define
-    }, [fetchCategories, setCategoriesHandler]);
+    }, [fetchCategories]);
 
 
     function createCategory(category) {
@@ -34,11 +34,14 @@ function Categories(props) {
                 name={category.name}
                 notes={category.notes}
                 fetchCategories={fetchCategories}
+                updateNameModal={props.updateNameModal}
+                titleModal={props.titleModal}
                 />
         )
     }
 
     const categoriesToRender = categories != null ? categories.map(createCategory) : null;
+    
     
     return (
         <div className="Categories">

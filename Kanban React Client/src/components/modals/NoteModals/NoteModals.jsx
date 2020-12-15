@@ -22,15 +22,13 @@ function NoteModals(props) {
                 setNote(response.data);
             }).catch(error => log.logError(error)); 
         } 
-
-        console.log("useEffect() in NoteModals: \n id: " + modal.selectedId + " \n isShow: " + modal.isShow);
         return () => fetchCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[fetchCategories, modal.isShow, modal.selectedId]);
 
     // Create note
     function addNote(newNote) {
-        api.addNote(newNote, categoryId, newNote.color.id).then(response=>{
+        api.createNote(newNote, categoryId, newNote.color.id).then(response=>{
             setNote(response.data);
         }).catch(error => log.logError(error));
     }
