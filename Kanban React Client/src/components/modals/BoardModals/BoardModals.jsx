@@ -37,11 +37,13 @@ function BoardModals(props) {
     function deleteBoard(id) {
         console.log(id);
         api.deleteBoard(id).catch(error => log.logError(error));
+        window.location.reload();
     }
 
     // Update Board
     function updateBoard(board) {
         api.updateBoard(board).catch(error => log.logError(error));
+        fetchBoards();
     }
 
     // Crud operations

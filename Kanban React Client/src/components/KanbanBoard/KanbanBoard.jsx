@@ -43,7 +43,7 @@ function KanbanBoard() {
     const boardTabs = boards.map(board => {
         return (
             <Tab eventKey={board.id} title={board.name}>
-                <Board board={board}/>
+                <Board board={board} fetchBoards={fetchBoards}/>
             </Tab>
         )
     })

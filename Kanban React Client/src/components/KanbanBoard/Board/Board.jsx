@@ -16,10 +16,6 @@ function Board(props) {
         });
     }
 
-    function hideModal() {
-        updateBoardModal(false, boardModal.selectedId);
-        window.location.reload();
-    }
 
     return (
         <div className="Board">
@@ -32,8 +28,9 @@ function Board(props) {
             <BoardModals
                 modal={boardModal}
                 updateModal={updateBoardModal}
-                onHide={hideModal}
+                onHide={() => updateBoardModal(false, boardModal.selectedId)}
                 categoryId={props.id}
+                fetchBoards={props.fetchBoards}
             />
         </div>
     );
