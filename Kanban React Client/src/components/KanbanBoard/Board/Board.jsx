@@ -1,37 +1,19 @@
 import React, { useState } from 'react';
 import Categories from '../Categories/Categories';
-import BoardModals from '../../modals/BoardModals/BoardModals';
+import {ModalType} from '../../../constants/CustomEnums';
 function Board(props) {
     
-    const [boardModal, setBoardModal] = useState({
-        isShow: false, 
-        selectedId: 0
-    });
-
-    // Set State
-    function updateBoardModal(isShow, id) {
-        setBoardModal({
-            isShow: isShow,
-            selectedId: id
-        });
-    }
 
 
     return (
         <div className="Board">
             {props.board != null ? <h2>{props.board.name}</h2>  : null}
-            <button onClick={() => updateBoardModal(true, props.board.id)}>Edit Board</button>
+            <button onClick={() => props.updateModal(true, ModalType.UPDATE, props.board.id)}>Edit Board</button>
             <Categories 
                 boardId={props.board.id}
                 categories={props.categories}
                 />
-            <BoardModals
-                modal={boardModal}
-                updateModal={updateBoardModal}
-                onHide={() => updateBoardModal(false, boardModal.selectedId)}
-                categoryId={props.id}
-                fetchBoards={props.fetchBoards}
-            />
+
         </div>
     );
 }

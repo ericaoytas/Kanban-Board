@@ -5,6 +5,7 @@ import EditNoteModal from './EditNoteModal';
 
 import * as api from '../../../services/KanbanService';
 import * as log from '../../../services/ErrorHandler';
+import {ModalType} from '../../../constants/CustomEnums';
 
 function NoteModals(props) {
     
@@ -59,7 +60,7 @@ function NoteModals(props) {
     let selectedModal = null;
 
     switch(props.modal.type) {
-        case "CreateNote":
+        case ModalType.CREATE:
             selectedModal = 
                 <EditNoteModal 
                     title="Create New Note"
@@ -69,7 +70,7 @@ function NoteModals(props) {
                     {...rest}
                 />
             break;
-        case "EditNote":
+        case ModalType.UPDATE:
             selectedModal = 
                 <EditNoteModal 
                     title="Edit Note"
@@ -79,7 +80,7 @@ function NoteModals(props) {
                     {...rest}
                     />
             break;
-        case "ViewNote":
+        case ModalType.READ:
         default:
             selectedModal = 
                 <ViewNoteModal 

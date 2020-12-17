@@ -1,9 +1,10 @@
 import React from "react";
+import {ModalType} from '../../../constants/CustomEnums';
 
 function Note(props) {
 
     function viewNote(note) {
-      props.updateModal(true, "ViewNote", note.id);
+      props.updateModal(true, ModalType.READ, note.id);
     }
 
   return (

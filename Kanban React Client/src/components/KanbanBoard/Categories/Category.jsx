@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 import Notes from '../Notes/Notes';
 import NoteModals from '../../modals/NoteModals/NoteModals'
+import {ModalType} from '../../../constants/CustomEnums';
 function Category (props) {
 
     const [noteModal, setNoteModal] = useState({
         isShow: false, 
-        type:"ViewNote", 
+        type:ModalType.CREATE, 
         selectedId:1
     });
 
@@ -21,7 +22,7 @@ function Category (props) {
     return (
         <div className="Category">
             <h2>{props.name}</h2>
-            <button onClick={() => updateNoteModal(true, "CreateNote", 0)}>Add Note</button>
+            <button onClick={() => updateNoteModal(true, ModalType.CREATE, 0)}>Add Note</button>
             <Notes notes={props.notes}
                 updateModal={updateNoteModal}
             />

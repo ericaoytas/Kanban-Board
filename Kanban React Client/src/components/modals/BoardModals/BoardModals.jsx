@@ -1,24 +1,26 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import EditBoardModal from './EditBoardModal';
 
 import * as api from '../../../services/KanbanService';
 import * as log from '../../../services/ErrorHandler';
-
+import { ModalType } from '../../../constants/CustomEnums';
 function BoardModals(props) {
 
-    const {fetchBoards, modal, ...rest} = props;
-    const blankBoard = {id: 0, name: ""}
+    const { fetchBoards, modal, onHide, ...rest } = props;
+    const blankBoard = { id: 0, name: "" }
 
     // State: board
     const [board, setBoard] = useState(blankBoard);
 
     // Effect: Get board
     useEffect(() => {
+
         if (modal.selectedId > 0 && modal.isShow) {
             getBoard(modal.selectedId);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        return () => fetchBoards();
     }, [fetchBoards, modal.isShow, modal.selectedId]);
 
     // Get Board
@@ -30,20 +32,23 @@ function BoardModals(props) {
 
     // Add Board
     function addBoard(newBoard) {
-        api.createBoard(newBoard).catch(error => log.logError(error));
+        api.createBoard(newBoard).then(response => {
+            setBoard(response.data)
+        }).catch(error => log.logError(error));
     }
 
     // Delete Board
     function deleteBoard(id) {
-        console.log(id);
         api.deleteBoard(id).catch(error => log.logError(error));
         window.location.reload();
     }
 
     // Update Board
-    function updateBoard(board) {
-        api.updateBoard(board).catch(error => log.logError(error));
+    async function updateBoard(board) {
+        const response = await api.updateBoard(board);
+        const data = await response.data;
         fetchBoards();
+        onHide();
     }
 
     // Crud operations
@@ -56,14 +61,15 @@ function BoardModals(props) {
     return (
         <div>
             {
-                board.id === 0? 
-                null
-                :
-                <EditBoardModal 
-                board={board}
-                operations={operations}
-                modal={modal}
-                {...rest} />
+                board.id === 0 && modal.type !== ModalType.CREATE ?
+                    null
+                    :
+                    <EditBoardModal
+                        board={board}
+                        operations={operations}
+                        modal={modal}
+                        onHide={onHide}
+                        {...rest} />
             }
 
         </div>

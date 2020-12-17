@@ -1,10 +1,12 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import {ModalType} from '../../../constants/CustomEnums';
+
 function ViewNoteModal(props) {
 
   function editNote() {
-    props.updateModal(true, "EditNote", props.note.id);
+    props.updateModal(true, ModalType.UPDATE, props.note.id);
   }
 
   return (

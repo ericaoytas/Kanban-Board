@@ -1,10 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import {Modal, Form, Button} from 'react-bootstrap';
 
 function EditBoardModal(props) {
 
-    const [board, setBoard] = useState(props.board);
+    const [board, setBoard] = useState({...props.board});
+
+    useEffect(() => {
+      setBoard(props.board);
+    },[props.board]);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -20,17 +24,15 @@ function EditBoardModal(props) {
     // Update Board
     function saveBoard(){
         props.operations.update(board);
-        props.onHide();
     }
 
     // Delete Board
     function deleteBoard(){
       props.operations.delete(board.id);
-      props.onHide();
     }
 
     function consoleLog(){
-        console.log(board);
+        console.log(board)
     }
 
     return (
