@@ -1,5 +1,5 @@
 import React from "react";
-import {ModalType} from '../../../constants/CustomEnums';
+import {ModalType} from '../../constants/CustomEnums';
 
 function Note(props) {
 

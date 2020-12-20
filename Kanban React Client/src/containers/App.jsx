@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../templates/Header';
-import KanbanBoard from '../components/KanbanBoard/KanbanBoard';
+import KanbanBoard from './KanbanBoard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

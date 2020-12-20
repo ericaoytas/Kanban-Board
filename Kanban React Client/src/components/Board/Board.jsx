@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Categories from '../Categories/Categories';
-import {ModalType} from '../../../constants/CustomEnums';
+import Categories from '../../containers/Categories';
+import {ModalType} from '../../constants/CustomEnums';
 function Board(props) {
     
 

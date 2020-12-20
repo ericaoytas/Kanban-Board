@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import Notes from '../Notes/Notes';
-import NoteModals from '../../modals/NoteModals/NoteModals'
-import {ModalType} from '../../../constants/CustomEnums';
+import Notes from '../../containers/Notes';
+import NoteModals from '../../containers/NoteModals';
+import {ModalType} from '../../constants/CustomEnums';
 function Category (props) {
 
     const [noteModal, setNoteModal] = useState({

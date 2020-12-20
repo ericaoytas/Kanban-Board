@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import EditBoardModal from './EditBoardModal';
+import EditBoardModal from '../components/Modal/BoardModal/BoardFormModal';
 
-import * as api from '../../../services/KanbanService';
-import * as log from '../../../services/ErrorHandler';
-import { ModalType } from '../../../constants/CustomEnums';
+import * as api from '../services/KanbanService';
+import * as log from '../utils/ErrorHandler';
+import { ModalType } from '../constants/CustomEnums';
 function BoardModals(props) {
 
     const { fetchBoards, modal, onHide, ...rest } = props;

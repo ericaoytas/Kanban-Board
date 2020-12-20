@@ -1,11 +1,11 @@
 /* eslint-disable no-fallthrough */
 import React, { useEffect, useState } from 'react';
-import ViewNoteModal from './ViewNoteModal';
-import EditNoteModal from './EditNoteModal';
+import ViewNoteModal from '../components/Modal/NoteModal/NoteModal';
+import EditNoteModal from '../components/Modal/NoteModal/NoteFormModal';
 
-import * as api from '../../../services/KanbanService';
-import * as log from '../../../services/ErrorHandler';
-import {ModalType} from '../../../constants/CustomEnums';
+import * as api from '../services/KanbanService';
+import * as log from '../utils/ErrorHandler';
+import {ModalType} from '../constants/CustomEnums';
 
 function NoteModals(props) {
     

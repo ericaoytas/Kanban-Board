@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Category from './Category';
-import * as api from '../../../services/KanbanService';
-import * as log from '../../../services/ErrorHandler';
+import Category from '../components/Category/Category';
+import * as api from '../services/KanbanService';
+import * as log from '../utils/ErrorHandler';
 function Categories(props) {
 
     const [categories, setCategories] = useState([{}]);

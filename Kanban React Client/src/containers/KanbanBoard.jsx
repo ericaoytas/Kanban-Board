@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import Board from './Board/Board';
+import Board from '../components/Board/Board';
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import BoardModals from '../modals/BoardModals/BoardModals';
-import * as api from '../../services/KanbanService';
-import * as log from '../../services/ErrorHandler';
-import {ModalType} from '../../constants/CustomEnums';
+import BoardModals from './BoardModals';
+import * as api from '../services/KanbanService';
+import * as log from '../utils/ErrorHandler';
+import {ModalType} from '../constants/CustomEnums';
 
 function KanbanBoard() {
 
