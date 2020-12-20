@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS kanban_sticky_notes_db;
-CREATE DATABASE kanban_sticky_notes_db;
-USE kanban_sticky_notes_db;
+DROP DATABASE IF EXISTS kanban_board_db;
+CREATE DATABASE kanban_board_db;
+USE kanban_board_db;
 
 CREATE TABLE board(
 	id INT UNIQUE AUTO_INCREMENT NOT NULL PRIMARY KEY,

@@ -1,4 +1,4 @@
-USE kanban_sticky_notes_db;
+USE kanban_board_db;
 
 
 select * from board;
@@ -7,7 +7,7 @@ select * from board;
 INSERT INTO 
 	board (name)
 VALUES
-	('Weekly Chores'), ('Kanban Project'), ('Bucketlist');
+	('Weekly Chores'), ('Kanban Project'), ('Bucketlist'), ('Shopping'), ('Activities');
 
 -- categories
 INSERT INTO
