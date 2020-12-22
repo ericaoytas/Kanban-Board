@@ -15,7 +15,7 @@ function ViewNoteModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       animation={false}
-      show={props.modal.isShow}
+      show={props.modal.isOpen}
       onHide={props.onHide}
     >
       <Modal.Header closeButton>

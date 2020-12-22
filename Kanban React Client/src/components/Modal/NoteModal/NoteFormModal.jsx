@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button'
+import {ModalType} from '../../../constants/CustomEnums';
 function EditNoteModal(props) {
 
     // State
@@ -43,13 +44,17 @@ function EditNoteModal(props) {
     }
     
 
+    function cancel() {
+      props.modal.type === ModalType.CREATE ? props.onHide() : viewNote();
+    }
+
     return (
         <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         animation={false}
-        show={props.modal.isShow}
+        show={props.modal.isOpen}
         onHide={props.onHide}
       >
         <Modal.Header closeButton>
@@ -89,13 +94,13 @@ function EditNoteModal(props) {
         <Modal.Footer>
 
           { // Show delete button only if editing a note (not creating)
-            props.modal.type === "EditNote" ? 
+            props.modal.type === ModalType.UPDATE ? 
               <Button onClick={() => {if (window.confirm('Are you sure you want to permanently remove this item?')) deleteNote() }}>Delete</Button> 
               : null
           }
           
-          <Button onClick={viewNote}>Cancel</Button> 
-          <Button onClick={() => props.modal.type === "EditNote"? saveNote() : addNote() }>Save</Button>
+          <Button onClick={cancel}>Cancel</Button> 
+          <Button onClick={() => props.modal.type === ModalType.UPDATE? saveNote() : addNote() }>Save</Button>
         </Modal.Footer>
       </Modal>
     )

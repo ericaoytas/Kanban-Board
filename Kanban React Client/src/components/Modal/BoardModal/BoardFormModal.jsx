@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 import {Modal, Form, Button} from 'react-bootstrap';
 
-function EditBoardModal(props) {
+function BoardFormModal(props) {
 
     const [board, setBoard] = useState({...props.board});
 
@@ -31,17 +31,13 @@ function EditBoardModal(props) {
       props.operations.delete(board.id);
     }
 
-    function consoleLog(){
-        console.log(board)
-    }
-
     return (
             <Modal
             size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
             animation={true}
-            show={props.modal.isShow}
+            show={props.modal.isOpen}
             onHide={props.onHide}
           >
             <Modal.Header closeButton>
@@ -70,11 +66,11 @@ function EditBoardModal(props) {
     
                 <Button onClick={() => {if (window.confirm('Are you sure you want to permanently remove this item?')) deleteBoard() }}>Delete</Button> 
               
-              <Button onClick={consoleLog}>Cancel</Button> 
+              <Button onClick={props.onHide}>Cancel</Button> 
               <Button onClick={saveBoard}>Save</Button>
             </Modal.Footer>
           </Modal>
     );
 }
 
-export default EditBoardModal;
+export default BoardFormModal;

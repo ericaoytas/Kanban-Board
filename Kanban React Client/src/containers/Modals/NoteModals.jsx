@@ -1,11 +1,11 @@
 /* eslint-disable no-fallthrough */
 import React, { useEffect, useState } from 'react';
-import ViewNoteModal from '../components/Modal/NoteModal/NoteModal';
-import EditNoteModal from '../components/Modal/NoteModal/NoteFormModal';
+import NoteModal from '../../components/Modal/NoteModal/NoteModal';
+import NoteFormModal from '../../components/Modal/NoteModal/NoteFormModal';
 
-import * as api from '../services/KanbanService';
-import * as log from '../utils/ErrorHandler';
-import {ModalType} from '../constants/CustomEnums';
+import * as api from '../../services/KanbanService';
+import * as log from '../../utils/ErrorHandler';
+import {ModalType} from '../../constants/CustomEnums';
 
 function NoteModals(props) {
     
@@ -18,14 +18,14 @@ function NoteModals(props) {
  
     // Read note
     useEffect(() => {
-        if (modal.selectedId > 0 && modal.isShow) {
+        if (modal.selectedId > 0 && modal.isOpen) {
             api.getNoteById(modal.selectedId).then(response=> {
                 setNote(response.data);
             }).catch(error => log.logError(error)); 
         } 
         return () => fetchCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[fetchCategories, modal.isShow, modal.selectedId]);
+    },[fetchCategories, modal.isOpen, modal.selectedId]);
 
     // Create note
     function addNote(newNote) {
@@ -62,7 +62,7 @@ function NoteModals(props) {
     switch(props.modal.type) {
         case ModalType.CREATE:
             selectedModal = 
-                <EditNoteModal 
+                <NoteFormModal 
                     title="Create New Note"
                     note={blankNote}
                     operations={operations}
@@ -72,7 +72,7 @@ function NoteModals(props) {
             break;
         case ModalType.UPDATE:
             selectedModal = 
-                <EditNoteModal 
+                <NoteFormModal 
                     title="Edit Note"
                     note={note}
                     operations={operations}
@@ -83,7 +83,7 @@ function NoteModals(props) {
         case ModalType.READ:
         default:
             selectedModal = 
-                <ViewNoteModal 
+                <NoteModal 
                     title="View Note"
                     note={note}
                     modal={modal}
