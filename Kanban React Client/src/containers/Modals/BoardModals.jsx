@@ -1,34 +1,30 @@
-import React, { useState, useEffect, useCallback } from 'react';
-
+import React, {useEffect} from 'react';
 import BoardFormModal from '../../components/Modal/BoardModal/BoardFormModal';
-
-import * as api from '../../services/KanbanService';
-import * as log from '../../utils/ErrorHandler';
 import { ModalType } from '../../constants/CustomEnums';
 function BoardModals(props) {
 
-    const { boardOperations, board, modal, onHide, ...rest } = props;
+    const blankBoard = { id: 0, name: "" };
 
     // Get Board By Id
     useEffect(() => {
-        if (modal.selectedId > 0 && modal.isOpen) {
-            boardOperations.get(modal.selectedId);
+        if (props.modal.selectedId > 0 && props.modal.isOpen) {
+            props.boardOperations.get(props.modal.selectedId);
         }
-    }, [modal.isOpen, modal.selectedId]);
+    }, [props.modal.isOpen, props.modal.selectedId, props.boardOperations]);
 
     function addBoard(newBoard) {
-        boardOperations.create(newBoard);
-        onHide();
+        props.boardOperations.create(newBoard);
+        props.onHide();
     }
 
     function deleteBoard(id) {
-        boardOperations.delete(id);
+        props.boardOperations.delete(id);
         window.location.reload();
     }
 
     function updateBoard(board) {
-        boardOperations.update(board);
-        onHide();
+        props.boardOperations.update(board);
+        props.onHide();
     }
 
     const operations = {
@@ -37,20 +33,33 @@ function BoardModals(props) {
         update: updateBoard
     };
 
+    let selectedModal = null;
+
+    switch (props.modal.type) {
+        case ModalType.CREATE:
+            selectedModal =
+                <BoardFormModal
+                    board={blankBoard}
+                    operations={operations}
+                    modal={props.modal}
+                    onHide={props.onHide} />
+            break;
+        case ModalType.UPDATE:
+        default:
+            selectedModal =
+                <BoardFormModal
+                    board={props.board}
+                    operations={operations}
+                    modal={props.modal}
+                    onHide={props.onHide} />
+            break;
+    }
+
     return (
         <div>
-            {
-                board.id === 0 && modal.type !== ModalType.CREATE ?
-                    null
-                    :
-                    <BoardFormModal
-                        board={board}
-                        operations={operations}
-                        modal={modal}
-                        onHide={onHide}
-                        {...rest} />
-            }
 
+                    {selectedModal}
+            
         </div>
     )
 }

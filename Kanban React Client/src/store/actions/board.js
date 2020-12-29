@@ -1,21 +1,31 @@
 import * as api from '../../services/KanbanService';
-import * as actionType from './actionTypes';
+import * as ActionType from './actionTypes';
 import * as log from '../../utils/ErrorHandler';
 
 export const getBoards = () => {
-    return dispatch => {
+    return (dispatch, getState) => {
         api.getBoards().then(response => {
-            dispatch({type: actionType.GET_BOARDS, boards: response.data})
-        })
+
+            let activeBoardId = getState().boardReducer.activeBoardId;
+            console.log(getState());
+            if (activeBoardId === 0) {
+                activeBoardId = response.data[0].id;
+            }
+
+            dispatch({
+                type: ActionType.GET_BOARDS, 
+                boards: response.data, 
+                activeBoardId: activeBoardId
+            })
+        }).catch(error => log.logError(error));
     }
 }
-
 
 export const getBoard = (id) => {
     return dispatch => {
         api.getBoardById(id).then(response => {
             dispatch({
-                    type: actionType.GET_BOARD,
+                    type: ActionType.GET_BOARD,
                     id: response.data.id,
                     name: response.data.name
                 });

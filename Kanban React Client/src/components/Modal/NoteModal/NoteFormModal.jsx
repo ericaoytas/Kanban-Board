@@ -28,7 +28,7 @@ function EditNoteModal(props) {
  
     // Read
     function viewNote() {
-        props.updateModal(true, "ViewNote", note.id);
+        props.updateModal(true, ModalType.READ , note.id);
     }
 
     // Update

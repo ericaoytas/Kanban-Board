@@ -5,15 +5,17 @@ const initialState = {
     selectedBoard: {
         id: 0,
         name: ""
-    }
+    },
+    activeBoardId: 0
 }
 
-export function reducer(state = initialState, action) {
+export const boardReducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionType.GET_BOARDS: 
             return {
                 ...state,
-                boards: action.boards
+                boards: action.boards,
+                activeBoardId: action.activeBoardId
             }
         case ActionType.GET_BOARD:
             return {
@@ -23,13 +25,10 @@ export function reducer(state = initialState, action) {
                     name: action.name
                 }
             }
-        case ActionType.UPDATE_BOARD:
+        case ActionType.SET_ACTIVE_BOARD_ID:
             return {
                 ...state,
-                selectedBoard: {
-                    id: 0, 
-                    name: ""
-                }
+                activeBoardId: action.id
             }
         default:
             return state;

@@ -6,22 +6,30 @@ import Tab from 'react-bootstrap/Tab'
 import BoardModals from './Modals/BoardModals';
 import {ModalType} from '../constants/CustomEnums';
 import {connect} from 'react-redux';
-import * as actionCreators from '../store/actions/board';
+import * as actionCreators from '../store/actions/index';
+import * as ActionType from '../store/actions/actionTypes';
 
 function KanbanBoard(props) {
 
     useEffect(() => {
         props.getBoards();
-    }, [props.getBoards]); 
+        // eslint-disable-next-line
+    }, [props.getBoards]); // eslint-disable-next-line
+
+    useEffect(() => {
+        props.getCategories(props.activeBoardId);
+        // eslint-disable-next-line
+    }, [props.activeBoardId, props.getCategories]);
 
     // Tabs
-    const [key, setKey] = useState(props.boards[0].id);
+    const [key, setKey] = useState(props.boards[0].id); 
 
-    function selectTab(newKey, event) {
+    function selectTab(newKey) {
         if (newKey === "-1") {
             updateBoardModal(true, ModalType.CREATE, 0); // Open form modal to add board
         }
         setKey(newKey);
+        props.setActiveBoardId(newKey);
     }
 
     const boardTabs = props.boards.map(board => {
@@ -61,7 +69,7 @@ function KanbanBoard(props) {
                 activekey={key}
                 onSelect={selectTab}
             >
-                {props.boards.length === 1? null: boardTabs}
+                {props.boards.length <= 1? null: boardTabs}
                 <Tab eventKey="-1" title="+"/>
             </Tabs>
             <BoardModals
@@ -77,8 +85,9 @@ function KanbanBoard(props) {
 
 const mapStateToProps = state => {
     return {
-        boards: state.boards,
-        board: state.selectedBoard
+        boards: state.boardReducer.boards,
+        board: state.boardReducer.selectedBoard,
+        activeBoardId: state.boardReducer.activeBoardId
     }
 }
 
@@ -86,9 +95,11 @@ const mapDispatchToProps = dispatch => {
     return {
         getBoards: () => dispatch(actionCreators.getBoards()),
         getBoard: (id) => dispatch(actionCreators.getBoard(id)),
+        setActiveBoardId: (id) => dispatch({type: ActionType.SET_ACTIVE_BOARD_ID, id: id}),
         updateBoard: (board) => dispatch(actionCreators.updateBoard(board)),
         createBoard: (board) => dispatch(actionCreators.createBoard(board)),
-        deleteBoard: (id) => dispatch(actionCreators.deleteBoard(id))
+        deleteBoard: (id) => dispatch(actionCreators.deleteBoard(id)),
+        getCategories: (boardId) => dispatch(actionCreators.getCategories(boardId))
     }
 }
 

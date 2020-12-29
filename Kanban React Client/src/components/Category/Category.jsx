@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Notes from '../../containers/Notes';
 
 function Category (props) {
@@ -9,7 +9,6 @@ function Category (props) {
 
             <Notes notes={props.notes}
                 categoryId={props.id}
-                fetchCategories={props.fetchCategories}
             />
 
         </div>

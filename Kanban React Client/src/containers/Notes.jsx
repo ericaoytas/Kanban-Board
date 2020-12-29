@@ -38,7 +38,6 @@ function Notes(props) {
                 updateModal={updateNoteModal}
                 onHide={() => updateNoteModal(false, noteModal.type, noteModal.selectedId)}
                 categoryId={props.categoryId}
-                fetchCategories={props.fetchCategories}
             />
         </div>
     );

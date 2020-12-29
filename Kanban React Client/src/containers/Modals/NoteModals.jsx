@@ -1,52 +1,37 @@
-/* eslint-disable no-fallthrough */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import NoteModal from '../../components/Modal/NoteModal/NoteModal';
 import NoteFormModal from '../../components/Modal/NoteModal/NoteFormModal';
-
-import * as api from '../../services/KanbanService';
-import * as log from '../../utils/ErrorHandler';
+import {connect} from 'react-redux';
 import {ModalType} from '../../constants/CustomEnums';
+import * as actionCreators from '../../store/actions/index';
 
 function NoteModals(props) {
     
-    const {modal, categoryId, fetchCategories, ...rest} = props;
-
+    const {modal, categoryId,  ...rest} = props;
     const blankNote = { id:0, name:"",description:"",  color: {id:1} };
-    
-    // States
-    const [note, setNote] = useState(blankNote);
- 
+
     // Read note
     useEffect(() => {
         if (modal.selectedId > 0 && modal.isOpen) {
-            api.getNoteById(modal.selectedId).then(response=> {
-                setNote(response.data);
-            }).catch(error => log.logError(error)); 
+            props.getNote(modal.selectedId);
         } 
-        return () => fetchCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[fetchCategories, modal.isOpen, modal.selectedId]);
+        // eslint-disable-next-line
+    },[modal.isOpen, modal.selectedId, props.getNote]);
+
 
     // Create note
     function addNote(newNote) {
-        api.createNote(newNote, categoryId, newNote.color.id).then(response=>{
-            setNote(response.data);
-        }).catch(error => log.logError(error));
+        props.addNote(newNote, categoryId);
     }
 
     // Update note
     function updateNote(updatedNote){
-        api.updateNote(updatedNote, categoryId, updatedNote.color.id).then(response=> {
-            setNote(response.data);
-        }).catch(error => log.logError(error)); 
+        props.updateNote(updatedNote, categoryId);
     }
 
     // Delete note
     function deleteNote(noteId){
-        api.deleteNote(noteId).then(response => {
-            console.log(response.data);
-        }).catch(error => log.logError(error));
-        fetchCategories();
+        props.deleteNote(noteId)
     }
 
     // Crud Operations
@@ -67,14 +52,16 @@ function NoteModals(props) {
                     note={blankNote}
                     operations={operations}
                     modal={modal}
-                    {...rest}
+                    updateModal={props.updateModal}
+                    onHide={props.onHide}
+
                 />
             break;
         case ModalType.UPDATE:
             selectedModal = 
                 <NoteFormModal 
                     title="Edit Note"
-                    note={note}
+                    note={props.note}
                     operations={operations}
                     modal={modal}
                     {...rest}
@@ -85,7 +72,7 @@ function NoteModals(props) {
             selectedModal = 
                 <NoteModal 
                     title="View Note"
-                    note={note}
+                    note={props.note}
                     modal={modal}
                     {...rest}
                     />
@@ -100,4 +87,20 @@ function NoteModals(props) {
     )
 }
 
-export default NoteModals;
+const mapStateToProps = state => {
+    return {
+        note: state.noteReducer.selectedNote,
+        activeBoardId: state.boardReducer.activeBoardId
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getNote: (id) => dispatch(actionCreators.getNote(id)),
+        addNote: (note, categoryId) => dispatch(actionCreators.createNote(note, categoryId)),
+        updateNote: (note, categoryId) => dispatch(actionCreators.updateNote(note, categoryId)),
+        deleteNote: (id) => dispatch(actionCreators.deleteNote(id)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteModals);
