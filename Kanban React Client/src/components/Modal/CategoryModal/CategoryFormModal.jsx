@@ -1,21 +1,20 @@
 import React, {useState, useEffect} from 'react'
-
 import {Modal, Form, Button} from 'react-bootstrap';
 import {ModalType} from '../../../constants/CustomEnums';
 
-function BoardFormModal(props) {
+function CategoryFormModal(props) {
 
-    const [board, setBoard] = useState({...props.board});
+    const [category, setCategory] = useState({...props.category});
 
     useEffect(() => {
-      setBoard(props.board);
+        setCategory(props.category);
       // eslint-disable-next-line
-    },[props.board.id, props.board.name]);
+    },[props.category.id, props.category.name]);
 
     function handleChange(event) {
         const { name, value } = event.target;
   
-        setBoard(prev => {
+        setCategory(prev => {
           return {
             ...prev,
             [name]: value
@@ -24,13 +23,13 @@ function BoardFormModal(props) {
     }
 
     // Update Board
-    function saveBoard(){
-        props.modal.type === ModalType.UPDATE ? props.operations.update(board) : props.operations.create(board);
+    function saveCategory(){
+      props.modal.type === ModalType.UPDATE ? props.operations.update(category) : props.operations.create(category);
     }
 
     // Delete Board
-    function deleteBoard(){
-      props.operations.delete(board.id);
+    function deleteCategory(){
+      props.operations.delete(category.id);
     }
 
     return (
@@ -49,11 +48,11 @@ function BoardFormModal(props) {
             </Modal.Header>
             <Modal.Body>
               <Form>
-                <Form.Group controlId="editBoardName">
+                <Form.Group controlId="editCategoryName">
                   <Form.Label>Name</Form.Label>
                   <Form.Control 
                   name="name"
-                  value={board.name}
+                  value={category.name}
                   type="text" 
                   placeholder="Enter new name" 
                   required
@@ -66,13 +65,13 @@ function BoardFormModal(props) {
             </Modal.Body>
             <Modal.Footer>
     
-                <Button onClick={() => {if (window.confirm('Are you sure you want to permanently remove this item?')) deleteBoard() }}>Delete</Button> 
+                <Button onClick={() => {if (window.confirm('Are you sure you want to permanently remove this item?')) deleteCategory() }}>Delete</Button> 
               
               <Button onClick={props.onHide}>Cancel</Button> 
-              <Button onClick={saveBoard}>Save</Button>
+              <Button onClick={saveCategory}>Save</Button>
             </Modal.Footer>
           </Modal>
     );
 }
 
-export default BoardFormModal;
+export default CategoryFormModal;

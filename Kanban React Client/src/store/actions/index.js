@@ -7,7 +7,11 @@ export {
 } from './board';
 
 export {
-    getCategories
+    getCategories,
+    getCategoryById,
+    createCategory,
+    updateCategory,
+    deleteCategory
 } from './category';
 
 export {

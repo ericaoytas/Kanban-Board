@@ -5,9 +5,7 @@ const BOARD_REST_API_URL = SERVER_URL + 'api/boards';
 const CATEGORY_REST_API_URL = SERVER_URL + 'api/categories';
 const NOTE_REST_API_URL = SERVER_URL + 'api/notes';
 
-
 // BOARD
-
 function getBoards() {
     return axios.get(BOARD_REST_API_URL);
 }
@@ -29,12 +27,36 @@ function deleteBoard(id) {
 }
 
 // CATEGORY
-function getCategoriesByBoardId(id) {
+function getCategoriesByBoardId(boardId) {
     return axios.get(CATEGORY_REST_API_URL, {
         params: {
-            board: id
+            board: boardId
         }
     });
+}
+
+function getCategoryById(id) {
+    return axios.get(CATEGORY_REST_API_URL + `/${id}`);
+}
+
+function createCategory(category, boardId) {
+    return axios.post(CATEGORY_REST_API_URL, category, {
+        params: {
+            board: boardId
+        }
+    })
+}
+
+function updateCategory(category, boardId) {
+    return axios.put(CATEGORY_REST_API_URL, category, {
+        params: {
+            board: boardId
+        }
+    })
+}
+
+function deleteCategory(id) {
+    return axios.delete(CATEGORY_REST_API_URL + `/${id}`);
 }
 
 // NOTE
@@ -80,6 +102,10 @@ export {
     deleteBoard,
 
     getCategoriesByBoardId, 
+    getCategoryById,
+    createCategory,
+    updateCategory,
+    deleteCategory,
     
     getNotesByCategoryId, 
     getNoteById,

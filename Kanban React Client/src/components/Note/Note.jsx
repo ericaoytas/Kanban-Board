@@ -3,15 +3,11 @@ import {ModalType} from '../../constants/CustomEnums';
 
 function Note(props) {
 
-    function viewNote(note) {
-      props.updateModal(true, ModalType.READ, note.id);
-    }
-
   return (
     <div>
       <div className="Note">
         <h3>{props.note.name}</h3>
-        <button onClick={()=>viewNote(props.note)}>
+        <button onClick={()=>props.updateModal(true, ModalType.READ, props.note.id)}>
           View
         </button>
       </div>

@@ -4,7 +4,7 @@ import * as log from '../../utils/ErrorHandler';
 import * as categoryActionCreator from './category';
 
 
-export const getNote = (id) => {
+function getNote(id) {
     return dispatch => {
         api.getNoteById(id).then(response => {
             dispatch({
@@ -15,7 +15,7 @@ export const getNote = (id) => {
     }
 }
 
-export const createNote = (note, categoryId) => {
+function createNote (note, categoryId) {
     return (dispatch, getState) => {
         
         // TODO: default color
@@ -33,11 +33,11 @@ export const createNote = (note, categoryId) => {
     }
 }
 
-export const updateNote = (note, categoryId) => {
+function updateNote(note, categoryId) {
     return (dispatch, getState) => {
         api.updateNote(note, categoryId, note.color.id).then(response => {
             dispatch({
-                type: ActionType.CREATE_NOTE,
+                type: ActionType.UPDATE_NOTE,
                 note: response.data
             });
             dispatch(categoryActionCreator.getCategories(getState().boardReducer.activeBoardId));
@@ -46,7 +46,7 @@ export const updateNote = (note, categoryId) => {
     }
 }
 
-export const deleteNote = (id) => {
+function deleteNote(id) {
     return (dispatch, getState) => {
         api.deleteNote(id).then(response => {
             dispatch(categoryActionCreator.getCategories(getState().boardReducer.activeBoardId));
@@ -54,3 +54,9 @@ export const deleteNote = (id) => {
     }
 }
 
+export {
+    getNote,
+    createNote,
+    updateNote,
+    deleteNote,
+};

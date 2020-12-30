@@ -5,6 +5,9 @@ export const UPDATE_BOARD = 'UPDATE_BOARD';
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_CATEGORY = 'GET_CATEGORY';
+export const CREATE_CATEGORY = 'CREATE_CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
 export const GET_NOTES = 'GET_NOTES';
 export const GET_NOTE = 'GET_NOTE';

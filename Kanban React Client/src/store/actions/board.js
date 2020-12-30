@@ -2,16 +2,13 @@ import * as api from '../../services/KanbanService';
 import * as ActionType from './actionTypes';
 import * as log from '../../utils/ErrorHandler';
 
-export const getBoards = () => {
+function getBoards() {
     return (dispatch, getState) => {
         api.getBoards().then(response => {
-
             let activeBoardId = getState().boardReducer.activeBoardId;
-            console.log(getState());
             if (activeBoardId === 0) {
                 activeBoardId = response.data[0].id;
             }
-
             dispatch({
                 type: ActionType.GET_BOARDS, 
                 boards: response.data, 
@@ -21,7 +18,7 @@ export const getBoards = () => {
     }
 }
 
-export const getBoard = (id) => {
+function getBoard (id) {
     return dispatch => {
         api.getBoardById(id).then(response => {
             dispatch({
@@ -33,7 +30,7 @@ export const getBoard = (id) => {
     }
 }
 
-export const updateBoard = (board) => {
+function updateBoard(board) {
     return dispatch => {
         api.updateBoard(board).then(response => {
             dispatch(getBoards());
@@ -41,7 +38,7 @@ export const updateBoard = (board) => {
     }
 }
 
-export const deleteBoard = (id) => {
+function deleteBoard(id) {
     return dispatch => {
         api.deleteBoard(id).then(response => {
             dispatch(getBoards());
@@ -49,10 +46,18 @@ export const deleteBoard = (id) => {
     }
 }
 
-export const createBoard = (board) => {
+function createBoard(board) {
     return dispatch => {
         api.createBoard(board).then(response => {
             dispatch(getBoards());
         }).catch(error => log.logError(error));
     }
 }
+
+export {
+    getBoards,
+    getBoard,
+    createBoard,
+    updateBoard,
+    deleteBoard
+};

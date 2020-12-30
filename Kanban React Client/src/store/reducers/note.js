@@ -9,23 +9,19 @@ const initialState = {
     }
 }
 
+const updateObject = (prev, updatedValues) => {
+    return {
+        ...prev,
+        ...updatedValues
+    }
+}
+
 function noteReducer(state = initialState, action) {
     switch(action.type) {
         case ActionType.GET_NOTE: 
-            return {
-                ...state, 
-                selectedNote: action.note
-            }
         case ActionType.CREATE_NOTE:
-            return {
-                ...state, 
-                selectedNote: action.note
-            }
         case ActionType.UPDATE_NOTE:
-            return {
-                ...state,
-                selectedNote: action.note
-            }
+            return updateObject(state, {selectedNote: action.note})
         default:
             return state;
     }

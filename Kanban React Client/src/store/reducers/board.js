@@ -9,28 +9,24 @@ const initialState = {
     activeBoardId: 0
 }
 
-export const boardReducer = (state = initialState, action) => {
+const updateObject = (prev, updatedValues) => {
+    return {
+        ...prev,
+        ...updatedValues
+    }
+}
+
+function boardReducer(state = initialState, action) {
     switch (action.type) {
         case ActionType.GET_BOARDS: 
-            return {
-                ...state,
-                boards: action.boards,
-                activeBoardId: action.activeBoardId
-            }
+            return updateObject(state, {boards: action.boards, activeBoardId: action.activeBoardId});
         case ActionType.GET_BOARD:
-            return {
-                ...state,
-                selectedBoard: {
-                    id: action.id,
-                    name: action.name
-                }
-            }
+            return updateObject(state, { selectedBoard: {id: action.id, name: action.name}});
         case ActionType.SET_ACTIVE_BOARD_ID:
-            return {
-                ...state,
-                activeBoardId: action.id
-            }
+            return updateObject(state, {activeBoardId:action.id});
         default:
             return state;
     }
 }
+
+export {boardReducer}
