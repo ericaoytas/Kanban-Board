@@ -32,7 +32,10 @@ function CategoryFormModal(props) {
       props.operations.delete(category.id);
     }
 
+
+
     return (
+      <>
             <Modal
             size="md"
             aria-labelledby="contained-modal-title-vcenter"
@@ -40,6 +43,7 @@ function CategoryFormModal(props) {
             animation={true}
             show={props.modal.isOpen}
             onHide={props.onHide}
+
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
@@ -71,6 +75,7 @@ function CategoryFormModal(props) {
               <Button onClick={saveCategory}>Save</Button>
             </Modal.Footer>
           </Modal>
+          </>
     );
 }
 

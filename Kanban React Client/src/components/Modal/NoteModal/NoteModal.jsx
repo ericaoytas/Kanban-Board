@@ -10,6 +10,15 @@ function ViewNoteModal(props) {
   }
 
   return (
+    <div id="NoteModal">
+      <style>
+        {
+          `.modal-content {
+            background-color: #${props.note.color.hexValue} !important;
+          }
+          `
+        }
+      </style>
     <Modal
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
@@ -34,6 +43,8 @@ function ViewNoteModal(props) {
         <Button onClick={editNote}>Edit</Button>
       </Modal.Footer>
     </Modal>
+
+    </div>
   );
 }
 

@@ -1,9 +1,10 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const SERVER_URL = 'http://localhost:8080/';
 const BOARD_REST_API_URL = SERVER_URL + 'api/boards';
 const CATEGORY_REST_API_URL = SERVER_URL + 'api/categories';
 const NOTE_REST_API_URL = SERVER_URL + 'api/notes';
+const COLOR_REST_API_URL = SERVER_URL + 'api/colors';
 
 // BOARD
 function getBoards() {
@@ -94,6 +95,15 @@ function deleteNote(id) {
     return axios.delete(NOTE_REST_API_URL + `/${id}`);
 }
 
+// COLOR
+function getColors() {
+    return axios.get(COLOR_REST_API_URL);
+}
+
+function getColorById(id) {
+    return axios.get(COLOR_REST_API_URL + `/${id}`);
+}
+
 export {
     getBoards, 
     getBoardById, 
@@ -111,5 +121,8 @@ export {
     getNoteById,
     createNote,
     updateNote,
-    deleteNote
+    deleteNote,
+
+    getColors,
+    getColorById
 };

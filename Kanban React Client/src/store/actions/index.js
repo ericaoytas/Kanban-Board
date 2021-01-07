@@ -20,3 +20,8 @@ export {
     updateNote,
     deleteNote,
 } from './note';
+
+export {
+    getColors,
+    getColor
+} from './color';

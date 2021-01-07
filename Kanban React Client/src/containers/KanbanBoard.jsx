@@ -14,12 +14,17 @@ function KanbanBoard(props) {
     useEffect(() => {
         props.getBoards();
         // eslint-disable-next-line
-    }, [props.getBoards]); // eslint-disable-next-line
+    }, [props.getBoards]); 
 
     useEffect(() => {
         props.getCategories(props.activeBoardId);
         // eslint-disable-next-line
     }, [props.activeBoardId, props.getCategories]);
+
+    useEffect(() => {
+        props.getColors();
+        // eslint-disable-next-line
+    }, []);
 
     // Tabs
     const [key, setKey] = useState(props.boards[0].id); 
@@ -99,7 +104,8 @@ const mapDispatchToProps = dispatch => {
         updateBoard: (board) => dispatch(actionCreators.updateBoard(board)),
         createBoard: (board) => dispatch(actionCreators.createBoard(board)),
         deleteBoard: (id) => dispatch(actionCreators.deleteBoard(id)),
-        getCategories: (boardId) => dispatch(actionCreators.getCategories(boardId))
+        getCategories: (boardId) => dispatch(actionCreators.getCategories(boardId)),
+        getColors: () => dispatch(actionCreators.getColors())
     }
 }
 

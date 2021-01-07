@@ -1,0 +1,67 @@
+ /* Customize the label (the container) */
+ .container {
+    display: inline;
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .container input {
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom radio button */
+  .radio-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-color: #eee;
+    border-radius: 20%;
+    border: 1px solid #bbbbbb;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .radio-control {
+    box-shadow: inset 0px 0px 2px #00adb5;
+    border: 1px solid #00adb5;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container input:checked ~ .radio-control {
+    border: 2px solid #00adb5;
+    box-shadow: inset 0px 0px 2px #00adb5;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .radio-control:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container input:checked ~ .radio-control:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  /* .container .radio-control:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 25%;
+    background: #00adb5;
+  }  */
