@@ -9,11 +9,4 @@ public interface NoteDetailService {
 	// Color
 	public List<Color> getColors();
 	public Color getColorById(int id);
-
-	// TODO: Add Color
-	// TODO: Update Color
-	// TODO: Delete Color
-	
-	
-	
 }

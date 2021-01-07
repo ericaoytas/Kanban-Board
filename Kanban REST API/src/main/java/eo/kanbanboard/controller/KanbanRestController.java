@@ -180,4 +180,22 @@ public class KanbanRestController {
 			kanbanService.deleteNote(note);
 			return note; 
 		}
+		
+		/*
+		 * Colors Mappings
+		 */
+		@GetMapping("/colors")
+		public List<Color> getColors() {
+			return noteDetailService.getColors();
+		}
+		
+		@GetMapping("/colors/{colorId}")
+		public Color getColorById(@PathVariable int colorId) {
+			Color color = noteDetailService.getColorById(colorId);
+			if (color == null) {
+				throw new ItemNotFoundException("Note id not found : " + colorId);
+			}
+			
+			return color;
+		}
 }
