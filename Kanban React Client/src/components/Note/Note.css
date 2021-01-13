@@ -1,0 +1,57 @@
+.Note {
+    text-decoration: none;
+    color: #000;
+    background: #f9fce1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 5px 5px 5px !important;
+    height: 8em;
+    width: 8em;
+    padding: 0.5em;
+    margin: 1%;
+    -moz-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
+    -webkit-box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
+    box-shadow: 5px 5px 4px rgba(44, 44, 44, 0.5);
+    -moz-transition: -moz-transform 0.15s linear;
+    -o-transition: -o-transform 0.15s linear;
+    -webkit-transition: -webkit-transform 0.15s linear;
+    font-family: "Shadows Into Light Two", cursive;
+    position: relative;
+    cursor: pointer;
+}
+
+.Note h3 {
+    font-size: 1.15rem;
+    text-align: center;
+    font-weight: bold;
+    white-space: wrap;
+    max-width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Note:hover,
+.Note:focus {
+  box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.7);
+  -moz-box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.7);
+  -webkit-box-shadow: 12px 12px 10px rgba(44, 44, 44, 0.7);
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+}
+
+
+.note-pen-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #dddddd;
+    cursor: pointer;
+}
+
+.note-pen-icon:hover{
+    color: #000;    
+}

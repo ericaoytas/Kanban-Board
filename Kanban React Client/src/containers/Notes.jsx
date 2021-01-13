@@ -1,26 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Note from '../components/Note/Note';
 import NoteModals from './Modals/NoteModals';
 import {connect} from 'react-redux';
 import {ModalType} from '../constants/CustomEnums';
 import * as actionCreators from '../store/actions/index';
+import './containers.css';
 
 function Notes(props) {
-
-
-    const [noteModal, setNoteModal] = useState({
-        isOpen: false, 
-        type: ModalType.CREATE, 
-        selectedId: 0
-    });
-
-    function updateNoteModal(isOpen, type, selectedId) {
-        setNoteModal({
-            isOpen: isOpen,
-            type: type,
-            selectedId: selectedId
-        });
-    }
 
     const noteOperations = {
         get: props.getNote,
@@ -34,20 +20,19 @@ function Notes(props) {
             <Note 
                 key={note.id}
                 note={note}
-                updateModal={updateNoteModal}
+                updateModal={props.updateModal}
             />);
     }
 
     return (
         <div className="Notes">
-            <button onClick={() => updateNoteModal(true, ModalType.CREATE, 0)}>Add Note</button>
             {props.notes != null ? props.notes.map(createNoteComponent) : null}
             <NoteModals 
-                modal={noteModal}
+                modal={props.modal}
                 note={props.note}
                 noteOperations={noteOperations}
-                updateModal={updateNoteModal}
-                onHide={() => updateNoteModal(false, noteModal.type, noteModal.selectedId)}
+                updateModal={props.updateModal}
+                onHide={() => props.updateModal(false, ModalType.CREATE, 0)}
                 categoryId={props.categoryId}
             />
         </div>

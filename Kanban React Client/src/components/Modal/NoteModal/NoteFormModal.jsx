@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button'
 import { ModalType } from '../../../constants/CustomEnums';
 import ColorSelector from '../../Color/ColorSelector';
+import '../Modal.css';
 function EditNoteModal(props) {
 
   // State
@@ -51,6 +52,11 @@ function EditNoteModal(props) {
     props.modal.type === ModalType.CREATE ? props.onHide() : viewNote();
   }
 
+  function onSubmit(event) {
+    event.preventDefault();
+    props.modal.type === ModalType.UPDATE ? saveNote() : addNote();
+  }
+
   return (
     <>
       <style>
@@ -68,6 +74,7 @@ function EditNoteModal(props) {
         animation={false}
         show={props.modal.isOpen}
         onHide={props.onHide}
+        dialogClassName="NoteModal"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -75,7 +82,7 @@ function EditNoteModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form id="new-note-form">
+          <Form onSubmit={onSubmit}>
             <Form.Group controlId="formNoteTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control
@@ -111,12 +118,12 @@ function EditNoteModal(props) {
 
           { // Show delete button only if editing a note (not creating)
             props.modal.type === ModalType.UPDATE ?
-              <Button onClick={() => { if (window.confirm('Are you sure you want to permanently remove this item?')) deleteNote() }}>Delete</Button>
+              <Button onClick={() => { if (window.confirm('Are you sure you want to permanently remove this item?')) deleteNote() }} className="delete-button">Delete</Button>
               : null
           }
 
           <Button onClick={cancel}>Cancel</Button>
-          <Button onClick={() => props.modal.type === ModalType.UPDATE ? saveNote() : addNote()}>Save</Button>
+          <Button type="submit" onClick={onSubmit}>Save</Button>
         </Modal.Footer>
       </Modal>
     </>

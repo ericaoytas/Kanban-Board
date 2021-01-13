@@ -1,0 +1,43 @@
+.Category {
+    max-width: 27vw;
+    margin: 15px 0 50px 0;
+}
+
+.category-title {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.category-title h2{
+    font-size: 1.5em;
+    display: inline;
+    width: auto;
+    text-align: center;
+    margin: 0 50px;
+}
+
+.category-plus-icon {
+    cursor: pointer;
+    color: #666666;
+    position: absolute;
+    right: 0;
+    margin: 6px 3px 3px 2px;
+}
+
+.category-plus-icon:hover {
+    color: white;
+}
+
+.category-pen-icon {
+    cursor: pointer;
+    color: #817d7d;
+    position: absolute;
+    right: 18px;
+    margin: 6px 2px 3px 20px;
+}
+
+.category-pen-icon:hover {
+    color: #fff;
+}
+

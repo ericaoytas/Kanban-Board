@@ -1,0 +1,54 @@
+
+
+.App {
+    background: #e1e1e1;
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.KanbanBoard {
+    background: white;
+    margin: 20px 40px 40px 40px;
+}
+
+.Tabs.nav{
+    background: #e1e1e1;
+}
+
+.Tabs .nav-item {
+    background: rgba(204, 143, 130, .5) !important ;
+    color: rgba(0,0,0,.7);
+}
+
+.Tabs .active {
+    background: #CC8F82!important ;
+    color: white !important;
+    border-color:#CC8F82 !important;
+
+}
+
+.Tabs .nav-item, .Tabs .active {
+    font-family: "Poppins", sans-serif;
+    border-top-left-radius: 10% !important;
+    border-top-right-radius: 10% !important;
+    border: 1px solid rgba(204, 143, 130, .5)!important;
+}
+
+.Categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.Notes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}

@@ -5,7 +5,7 @@ import {ModalType} from '../../constants/CustomEnums';
 
 function NoteModals(props) {
     
-    const blankNote = { id:0, name:"",description:"",  color: {id:1} };
+    const blankNote = { id:0, name:"",description:"",  color: {id:1, name: "Misty Rose", hexValue: "FDDFDF"}};
 
     // Read note
     useEffect(() => {

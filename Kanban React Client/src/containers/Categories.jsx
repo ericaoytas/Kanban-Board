@@ -1,26 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Category from '../components/Category/Category';
 import {connect} from 'react-redux';
 import * as actionCreators from '../store/actions/index';
 import {ModalType} from '../constants/CustomEnums';
 import CategoryModals from '../containers/Modals/CategoryModals';
+import './containers.css';
+
 function Categories(props) {
-
-
-    // Category Modal
-    const [categoryModal, setCategoryModal] = useState({
-        isOpen: false, 
-        type: ModalType.CREATE,
-        selectedId: 0
-    });
-
-    function updateCategoryModal(isOpen, type, id) {
-        setCategoryModal({
-            isOpen: isOpen,
-            type: type,
-            selectedId: id
-        });
-    }
 
     const categoryOperations = {
         get: props.getCategory,
@@ -36,25 +22,23 @@ function Categories(props) {
                 id={category.id}
                 name={category.name}
                 notes={category.notes}
-                updateModal={updateCategoryModal}
-                modal={categoryModal}
+                updateModal={props.updateModal}
+                modal={props.modal}
                 />
         )
     }
 
     return (
         <div className="Categories">
-            <div className="flex-container">
-                {props.categories != null ? props.categories.map(createCategoryComponent) : null}
-                <button onClick={() =>  updateCategoryModal(true, ModalType.CREATE, 0)}>Add New Category</button>
-                <CategoryModals 
-                    category={props.category}
-                    categoryOperations={categoryOperations}
-                    modal={categoryModal}
-                    updateModal={updateCategoryModal}
-                    onHide={() => updateCategoryModal(false, ModalType.CREATE, 0)}
-                    />
-            </div>
+            {props.categories != null ? props.categories.map(createCategoryComponent) : null}
+            {/* <button onClick={() =>  updateCategoryModal(true, ModalType.CREATE, 0)}>Add New Category</button> */}
+            <CategoryModals 
+                category={props.category}
+                categoryOperations={categoryOperations}
+                modal={props.modal}
+                updateModal={props.updateModal}
+                onHide={() => props.updateModal(false, ModalType.CREATE, 0)}
+                />
         </div>
     ); 
 }

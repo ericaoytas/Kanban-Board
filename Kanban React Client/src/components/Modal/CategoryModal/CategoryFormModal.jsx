@@ -1,82 +1,83 @@
-import React, {useState, useEffect} from 'react'
-import {Modal, Form, Button} from 'react-bootstrap';
-import {ModalType} from '../../../constants/CustomEnums';
-
+import React, { useState, useEffect } from 'react'
+import { Modal, Form, Button } from 'react-bootstrap';
+import { ModalType } from '../../../constants/CustomEnums';
+import '../Modal.css';
 function CategoryFormModal(props) {
 
-    const [category, setCategory] = useState({...props.category});
+  const [category, setCategory] = useState({ ...props.category });
 
-    useEffect(() => {
-        setCategory(props.category);
-      // eslint-disable-next-line
-    },[props.category.id, props.category.name]);
+  useEffect(() => {
+    setCategory(props.category);
+    // eslint-disable-next-line
+  }, [props.category.id, props.category.name]);
 
-    function handleChange(event) {
-        const { name, value } = event.target;
-  
-        setCategory(prev => {
-          return {
-            ...prev,
-            [name]: value
-          };
-        });
-    }
+  function handleChange(event) {
+    const { name, value } = event.target;
 
-    // Update Board
-    function saveCategory(){
-      props.modal.type === ModalType.UPDATE ? props.operations.update(category) : props.operations.create(category);
-    }
+    setCategory(prev => {
+      return {
+        ...prev,
+        [name]: value
+      };
+    });
+  }
 
-    // Delete Board
-    function deleteCategory(){
-      props.operations.delete(category.id);
-    }
+  function saveCategory(event) {
+    event.preventDefault();
+    props.modal.type === ModalType.UPDATE ? props.operations.update(category) : props.operations.create(category);
+  }
 
+  function deleteCategory() {
+    props.operations.delete(category.id);
+  }
 
+  return (
+    <>
+      <Modal
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        animation={true}
+        show={props.modal.isOpen}
+        onHide={props.onHide}
+        dialogClassName="CategoryModal"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {props.title}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={saveCategory}>
+            <Form.Group controlId="editCategoryName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                name="name"
+                value={category.name}
+                type="text"
+                placeholder="Enter new name"
+                required
+                onChange={handleChange}
+                autoComplete="off"
+              />
+            </Form.Group>
+            <br />
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
 
-    return (
-      <>
-            <Modal
-            size="md"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            animation={true}
-            show={props.modal.isOpen}
-            onHide={props.onHide}
+          { // Show delete button only if editing a note (not creating)
+            props.modal.type === ModalType.UPDATE ?
+              <Button onClick={() => { if (window.confirm('Are you sure you want to permanently remove this item?')) deleteCategory() }} className="delete-button">Delete</Button>
+              : null
+          }
 
-          >
-            <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter">
-                {props.title}
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <Form.Group controlId="editCategoryName">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control 
-                  name="name"
-                  value={category.name}
-                  type="text" 
-                  placeholder="Enter new name" 
-                  required
-                  onChange={handleChange}
-                  autoComplete="off"
-                  />
-                </Form.Group>
-                <br />
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-    
-                <Button onClick={() => {if (window.confirm('Are you sure you want to permanently remove this item?')) deleteCategory() }}>Delete</Button> 
-              
-              <Button onClick={props.onHide}>Cancel</Button> 
-              <Button onClick={saveCategory}>Save</Button>
-            </Modal.Footer>
-          </Modal>
-          </>
-    );
+          <Button onClick={props.onHide}>Cancel</Button>
+          <Button type="submit">Save</Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 }
 
 export default CategoryFormModal;

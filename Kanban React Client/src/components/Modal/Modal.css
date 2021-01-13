@@ -1,0 +1,80 @@
+
+.NoteModal.modal-dialog {
+    width: 600px !important;
+    min-width: 600px !important;
+}
+
+/* Modal header */
+
+.modal-header  {
+    height: 35px !important;
+    padding: 2px 16px !important;
+    border-radius: 0 !important;
+    display: block !important;
+    position: relative;
+}
+
+.modal-header .close {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+}
+
+.modal-title {
+    font-size: 1.2em !important;
+    padding: 0px !important;
+    text-align: center !important;
+}
+
+/* Modal content */
+
+.BoardModal .modal-content, .CategoryModal .modal-content {
+    background-color: #E1E1E1 !important;
+}
+
+.NoteModal .modal-content {
+    height: 510px !important;
+    border-radius: 0 !important;
+}
+
+.modal-content .form-group {
+    margin: 0 0 10px !important;
+}
+
+.modal-content textarea {
+    resize: none;
+    height: 190px !important;
+}
+
+.modal-content .modal-body {
+    padding: 5px 16px 0 16px;
+}
+
+/* Modal footer */
+
+.modal-footer {
+    height: 55px !important;
+    border-radius: 0 !important;
+    padding: 5px !important;
+}
+
+.modal-footer .btn {
+    background:none;
+    border: none;
+    color: black;
+}
+
+.modal-footer .btn:hover {
+    background-color: #00adb5;
+    border: #00adb5;
+}
+
+.delete-button:hover {
+    background-color: #ce4e4e !important;
+    border: #ce4e4e !important;
+}
+
+.delete-button {
+    position: absolute;
+    left: 10px;
+}

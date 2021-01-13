@@ -1,16 +1,15 @@
 import React from "react";
-import {ModalType} from '../../constants/CustomEnums';
-
+import { ModalType } from '../../constants/CustomEnums';
+import './Note.css';
 function Note(props) {
 
+  const style = {
+    backgroundColor: "#" + props.note.color.hexValue
+  }
+
   return (
-    <div>
-      <div className="Note">
-        <h3>{props.note.name}</h3>
-        <button onClick={()=>props.updateModal(true, ModalType.READ, props.note.id)}>
-          View
-        </button>
-      </div>
+    <div className="Note" style={style} onClick={() => props.updateModal(true, ModalType.READ, props.note.id)}>
+      <h3 className="note-title" >{props.note.name}</h3>
     </div>
   );
 }

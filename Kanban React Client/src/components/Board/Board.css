@@ -1,0 +1,38 @@
+.Board {
+    padding: 20px 40px;
+    border: solid 30px #CC8F82;
+    font-family: "Poppins", sans-serif;
+    background: #3A3A3A;
+    color: white;
+    line-height: 1 !important;
+    box-shadow: 7px 7px 10px 1px rgba(0,0,0,.51), inset 0 0 10px 1px #000000;
+    position: relative;
+    height: 80vh;
+}
+
+.board-title {
+    text-align: center;
+    font-size: 2.3em;
+}
+
+.board-pen-icon {
+    position: absolute;
+    right: 80px;
+    top: 25px;
+    cursor: pointer;
+    color: #666666;
+}
+
+.Board .pen-icon:hover, .Board .plus-icon:hover {
+    color: white;
+}
+
+
+.Board .plus-icon {
+    position: absolute;
+    right: 40px;
+    top: 25px;
+    cursor: pointer;
+    color: #666666;
+}
+

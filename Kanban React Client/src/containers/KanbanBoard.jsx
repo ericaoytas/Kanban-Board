@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 import * as actionCreators from '../store/actions/index';
 import * as ActionType from '../store/actions/actionTypes';
 
+import './containers.css'
+
 function KanbanBoard(props) {
 
     useEffect(() => {
@@ -73,6 +75,7 @@ function KanbanBoard(props) {
                 id="controlled-tab-example"
                 activekey={key}
                 onSelect={selectTab}
+                className="Tabs"
             >
                 {props.boards.length <= 1? null: boardTabs}
                 <Tab eventKey="-1" title="+"/>

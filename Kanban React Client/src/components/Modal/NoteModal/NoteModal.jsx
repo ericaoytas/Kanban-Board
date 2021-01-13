@@ -1,8 +1,8 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import {ModalType} from '../../../constants/CustomEnums';
-
+import { ModalType } from '../../../constants/CustomEnums';
+import '../Modal.css';
 function ViewNoteModal(props) {
 
   function editNote() {
@@ -10,7 +10,7 @@ function ViewNoteModal(props) {
   }
 
   return (
-    <div id="NoteModal">
+    <div>
       <style>
         {
           `.modal-content {
@@ -19,30 +19,31 @@ function ViewNoteModal(props) {
           `
         }
       </style>
-    <Modal
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      animation={false}
-      show={props.modal.isOpen}
-      onHide={props.onHide}
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.title}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>{props.note.name}</h4>
-        <p>
-          {props.note.description}
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button> 
-        <Button onClick={editNote}>Edit</Button>
-      </Modal.Footer>
-    </Modal>
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        animation={false}
+        show={props.modal.isOpen}
+        onHide={props.onHide}
+        dialogClassName="NoteModal"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {props.title}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>{props.note.name}</h4>
+          <p>
+            {props.note.description}
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={editNote}>Edit</Button>
+        </Modal.Footer>
+      </Modal>
 
     </div>
   );
