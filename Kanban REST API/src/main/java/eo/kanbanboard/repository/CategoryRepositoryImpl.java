@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import eo.kanbanboard.entity.Category;
+import eo.kanbanboard.entity.Note;
 
 public class CategoryRepositoryImpl implements CategoryRepositoryCustom{
 
@@ -24,6 +25,18 @@ public class CategoryRepositoryImpl implements CategoryRepositoryCustom{
 															.filter(c -> c.getBoard().getId() == id)
 															.collect(Collectors.toList());
 		return filteredCategories;
+	}
+
+	@Override
+	public Category updateCategory(Category category) {
+		Optional<Category> result = categoryRepository.findById(category.getId());
+		Category categoryToUpdate = null;
+		if (result.isPresent()) {
+			categoryToUpdate = result.get();
+			categoryToUpdate.setName(category.getName());
+		}
+
+		return categoryToUpdate;
 	}
 
 }

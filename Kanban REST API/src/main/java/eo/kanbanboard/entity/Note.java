@@ -40,8 +40,7 @@ public class Note {
 
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY,
-				cascade={CascadeType.PERSIST,
-			 			CascadeType.DETACH, CascadeType.REFRESH})
+				cascade={CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name="category_id")
 	private Category category;
 	

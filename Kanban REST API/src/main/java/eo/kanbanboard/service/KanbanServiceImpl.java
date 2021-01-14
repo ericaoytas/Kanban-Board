@@ -77,7 +77,7 @@ public class KanbanServiceImpl implements KanbanService {
 
 	@Override
 	public Category updateCategory(Category category) {
-		return categoryRepository.save(category);
+		return categoryRepository.updateCategory(category);
 	}
 
 	@Override
