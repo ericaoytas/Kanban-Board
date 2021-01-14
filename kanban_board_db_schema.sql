@@ -9,7 +9,7 @@ CREATE TABLE board(
 
 CREATE TABLE category(
 	id INT UNIQUE AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(15) NOT NULL,
+    name VARCHAR(20) NOT NULL,
     board_id INT NOT NULL,
     FOREIGN KEY (board_id) REFERENCES board(id)
     );
